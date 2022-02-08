@@ -1,0 +1,11 @@
+.hero-banner {
+   display: flex;
+   height: 70vh;
+   background-image: url('../../assets/hero.jpg');
+   background-position: center;
+   background-repeat: no-repeat;
+   background-size: cover;
+   justify-content: center;
+   align-items: center;
+   padding: 2rem;
+}

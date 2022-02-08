@@ -1,0 +1,39 @@
+.header {
+   background-color: var(--transparent-dark-grey);
+   padding: 0.4rem 1.5rem;
+   position: fixed;
+   left: 0;
+   top: 0;
+   right: 0;
+   backdrop-filter: blur(8px);
+   display: flex;
+   align-items: center;
+   justify-content: center;
+}
+
+.header-content-wrapper {
+   width: 100%;
+   max-width: 1240px;
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+}
+
+.header-logo-wrapper {
+   display: flex;
+   align-items: center;
+   gap: 0.5rem;
+}
+
+.header-logo {
+   height: 2.5rem;
+   width: 2.5rem;
+   background-image: url('../../assets/grb.png');
+   background-repeat: no-repeat;
+   background-position: center;
+   background-size: contain;
+}
+
+.header-logo-wrapper h3 {
+   margin: 0;
+}

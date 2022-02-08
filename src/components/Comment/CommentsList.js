@@ -38,6 +38,13 @@ const comments = [
          'Odlična atmosfera,najbolji šefovi ikad(realno). Zanimljivi projekti,nema pritiska niti stresa što...',
       negative: 'Što se mene tiče nema...zato sam ovdje tri godine.',
    },
+   {
+      id: 6,
+      company: 'Infinum',
+      positive:
+         'Odlična atmosfera,najbolji šefovi ikad(realno). Zanimljivi projekti,nema pritiska niti stresa što...',
+      negative: 'Što se mene tiče nema...zato sam ovdje tri godine.',
+   },
 ]
 
 const CommentsList = () => {

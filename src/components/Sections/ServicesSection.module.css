@@ -1,0 +1,30 @@
+.services-section-wrapper {
+   padding: 1rem;
+}
+.services-section {
+   display: grid;
+   grid-template-columns: repeat(2, 1fr);
+   align-items: center;
+   background-color: var(--black);
+   border-radius: 0.5rem;
+   padding: 1.5rem;
+   margin: 1rem auto 0;
+   gap: 1rem;
+}
+
+.services-section-item {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+}
+
+.services-section-item p {
+   text-align: center;
+}
+
+@media only screen and (min-width: 768px) {
+   .services-section {
+      grid-template-columns: repeat(4, 1fr);
+      padding: 2.5rem 1.5rem 1.5rem;
+   }
+}

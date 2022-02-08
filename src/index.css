@@ -31,3 +31,26 @@ button {
    border: none;
    padding: 0.5rem 1rem;
 }
+
+.container {
+   margin: auto;
+   max-width: 1240px;
+}
+
+*::-webkit-scrollbar {
+   width: 0.4rem;
+}
+
+*::-webkit-scrollbar-thumb {
+   background: var(--light-grey);
+   border-radius: 1rem;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+   background: var(--black);
+}
+
+* {
+   scrollbar-width: thin;
+   scrollbar-color: var(--black);
+}

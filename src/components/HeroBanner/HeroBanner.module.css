@@ -1,7 +1,7 @@
 .hero-banner {
    display: flex;
    height: 38rem;
-   background-image: url('../../assets/hero.jpg');
+   background-image: url('../../assets/hero.webp');
    background-position: center;
    background-repeat: no-repeat;
    background-size: cover;
@@ -12,6 +12,6 @@
 
 @media only screen and (min-width: 768px) {
    .hero-banner {
-      max-height: 60vh;
+      height: 30rem;
    }
 }

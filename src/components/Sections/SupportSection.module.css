@@ -1,0 +1,54 @@
+.support-section {
+   padding: 1rem;
+   text-align: center;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+   gap: 1rem;
+}
+
+.support-section p {
+   max-width: 1024px;
+   margin: auto;
+   font-weight: bold;
+}
+
+.support-section-image {
+   background-image: url('../../assets/kontakt.webp');
+   background-position: center;
+   background-repeat: no-repeat;
+   background-size: cover;
+   height: 22rem;
+   margin: 2rem auto;
+   border-radius: 0.5rem;
+   position: relative;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: flex-end;
+   width: 100%;
+}
+
+.support-section-image::before {
+   position: absolute;
+   content: '';
+   top: 0;
+   left: 0;
+   background-color: var(--transparent-dark-grey);
+   width: 100%;
+   height: 100%;
+   border-radius: 0.5rem;
+}
+
+.support-section-image h2,
+.support-section-image p {
+   z-index: 3;
+   margin: 1.5rem;
+}
+
+@media only screen and (min-width: 1024px) {
+   .support-section-image {
+      height: 28rem;
+   }
+}

@@ -1,0 +1,23 @@
+.container {
+   display: grid;
+   justify-content: center;
+   align-items: center;
+   grid-template-columns: 1fr;
+   padding: 1rem;
+}
+
+.img {
+   width: 100%;
+}
+
+.container h2 {
+   margin: 0;
+   text-align: center;
+}
+
+@media only screen and (min-width: 768px) {
+   .container {
+      grid-template-columns: 20rem 1fr;
+      gap: 1.5rem;
+   }
+}

@@ -1,6 +1,6 @@
 .hero-banner {
    display: flex;
-   height: 65vh;
+   height: 38rem;
    background-image: url('../../assets/hero.jpg');
    background-position: center;
    background-repeat: no-repeat;
@@ -8,4 +8,10 @@
    justify-content: center;
    align-items: flex-start;
    padding: 6rem 2rem 2rem;
+}
+
+@media only screen and (min-width: 768px) {
+   .hero-banner {
+      max-height: 60vh;
+   }
 }

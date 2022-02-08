@@ -30,6 +30,8 @@ const SearchInput = () => {
             icon={!openDropdown ? faSearch : faClose}
             onClick={handleCloseDropdown}
             size='lg'
+            className={styles.icon}
+            color='var(--dark-grey)'
          />
          <input
             type='text'

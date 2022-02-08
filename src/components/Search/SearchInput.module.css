@@ -3,7 +3,7 @@
    display: flex;
    justify-content: space-between;
    align-items: center;
-   padding: 0 0.5rem;
+   padding: 0.15rem 1rem;
    border-radius: 0.5rem;
    position: relative;
 }
@@ -14,12 +14,13 @@
    background-color: transparent;
    font-family: inherit;
    outline: none;
+   font-size: 1rem;
 }
 
 .search-dropdown {
    position: absolute;
    width: 100%;
-   top: 3rem;
+   top: 3.5rem;
    left: 0;
    height: 10rem;
    overflow-y: scroll;
@@ -29,5 +30,14 @@
    flex-direction: column;
    background-color: rgba(255, 255, 255, 0.8);
    padding: 0.5rem;
+   color: var(--dark-grey);
+}
+
+.icon {
+   padding: 0 0.5rem 0 0;
+   cursor: pointer;
+}
+
+.icon:hover {
    color: var(--dark-grey);
 }

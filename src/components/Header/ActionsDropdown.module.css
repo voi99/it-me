@@ -1,0 +1,10 @@
+.dropdown {
+   position: fixed;
+   right: calc(50vw - 6rem);
+   top: 4rem;
+   border-radius: 0.5rem;
+   gap: 0.5rem;
+   display: flex;
+   justify-content: center;
+   width: 12rem;
+}

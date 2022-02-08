@@ -3,7 +3,7 @@
 :root {
    --dark-grey: #2e2e2e;
    --black: #242424;
-   --light-gray: #e0e0e0;
+   --light-grey: #e0e0e0;
    --transparent-dark-grey: rgba(33, 33, 33, 0.5);
 }
 
@@ -12,7 +12,7 @@ body {
    font-family: 'Poppins', sans-serif;
    -webkit-font-smoothing: antialiased;
    -moz-osx-font-smoothing: grayscale;
-   color: var(--light-gray);
+   color: var(--light-grey);
    background-color: var(--dark-grey);
 }
 
@@ -23,4 +23,11 @@ body {
 a {
    text-decoration: none;
    color: inherit;
+}
+
+button {
+   font-family: inherit;
+   border-radius: 0.5rem;
+   border: none;
+   padding: 0.5rem 1rem;
 }

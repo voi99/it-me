@@ -1,0 +1,40 @@
+.company-details {
+   border-radius: 0.5rem;
+   background-color: var(--black);
+   display: flex;
+   flex-direction: column;
+   overflow: hidden;
+}
+
+.company-header {
+   display: grid;
+   grid-template-columns: 8rem 1fr;
+}
+
+.company-logo {
+   width: 8rem;
+   height: 8rem;
+   background-position: center;
+   background-repeat: no-repeat;
+   background-size: 100%;
+}
+
+.company-info {
+   padding: 1rem;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+}
+
+.company-info h2 {
+   margin: 0;
+}
+
+.company-about {
+   padding: 0.3rem 0.9rem 1.4rem;
+}
+
+.company-about p {
+   color: var(--grey-smoke);
+}

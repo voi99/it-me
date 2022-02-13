@@ -7,12 +7,10 @@ const Comment = ({ commentId, company, positive, negative }) => {
       <Card className={styles.card}>
          <h3>{company}</h3>
          <h4>Pozitivno</h4>
-         <div>{positive}</div>
+         <p>{positive}</p>
          <h4>Negativno</h4>
-         <div>{negative}</div>
-         <button style={{ width: '100%', marginTop: '1rem' }}>
-            pogledaj komentar
-         </button>
+         <p>{negative}</p>
+         <button className={styles.btn}>pogledaj komentar</button>
       </Card>
    )
 }

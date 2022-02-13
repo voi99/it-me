@@ -4,12 +4,14 @@ import { Link } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars } from '@fortawesome/free-solid-svg-icons'
 import ActionsDropdown from './ActionsDropdown'
+import { useAuthContext } from '../../hooks/use-auth'
 
 const Header = () => {
    const [openDropdown, setOpenDropdown] = useState(false)
    const handleDropdown = () => {
       setOpenDropdown((prevState) => !prevState)
    }
+   const { isLoggedIn } = useAuthContext()
 
    return (
       <header className={styles.header}>
@@ -22,18 +24,29 @@ const Header = () => {
             </div>
             <div className={styles['header-actions-wrapper']}>
                <div className={styles['header-actions-desktop']}>
-                  <Link
-                     to='/login'
-                     className={`${styles['link']} ${styles['link-first']}`}
-                  >
-                     Login
-                  </Link>
-                  <Link
-                     to='/signup'
-                     className={`${styles['link']} ${styles['link-second']}`}
-                  >
-                     Signup
-                  </Link>
+                  {isLoggedIn ? (
+                     <Link
+                        to='/profile'
+                        className={`${styles['link']} ${styles['link-second']}`}
+                     >
+                        Profile
+                     </Link>
+                  ) : (
+                     <>
+                        <Link
+                           to='/login'
+                           className={`${styles['link']} ${styles['link-first']}`}
+                        >
+                           Login
+                        </Link>
+                        <Link
+                           to='/signup'
+                           className={`${styles['link']} ${styles['link-second']}`}
+                        >
+                           Signup
+                        </Link>
+                     </>
+                  )}
                </div>
                <div className={styles['header-actions-mobile']}>
                   <FontAwesomeIcon

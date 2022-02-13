@@ -1,0 +1,24 @@
+.form-wrapper {
+   max-width: 768px;
+   margin: auto;
+   padding: 0.5rem 2rem 2rem;
+}
+
+.form-wrapper h3 {
+   margin-top: 0;
+}
+
+.input {
+   background-color: var(--light-grey);
+}
+
+.btn {
+   width: 100%;
+   background-color: var(--light-grey);
+   font-size: medium;
+}
+
+.btn:hover {
+   background-color: var(--black);
+   color: var(--light-grey);
+}

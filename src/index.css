@@ -5,6 +5,7 @@
    --black: #242424;
    --light-grey: #e0e0e0;
    --transparent-dark-grey: rgba(33, 33, 33, 0.5);
+   --grey-smoke: #858585;
 }
 
 body {
@@ -27,9 +28,15 @@ a {
 
 button {
    font-family: inherit;
-   border-radius: 0.5rem;
+   border-radius: 0.3rem;
    border: none;
    padding: 0.5rem 1rem;
+   cursor: pointer;
+   transition: 0.3s;
+}
+
+input {
+   font-family: inherit;
 }
 
 .container {
@@ -53,4 +60,12 @@ button {
 * {
    scrollbar-width: thin;
    scrollbar-color: var(--black);
+}
+
+.form {
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   gap: 0.5rem;
 }

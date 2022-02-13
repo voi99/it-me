@@ -1,6 +1,5 @@
 import React from 'react'
 import CommentsList from '../components/Comment/CommentsList'
-import Header from '../components/Header/Header'
 import HeroBanner from '../components/HeroBanner/HeroBanner'
 import Search from '../components/Search/Search'
 import InfoSection from '../components/Sections/InfoSection'
@@ -10,8 +9,7 @@ import Footer from '../components/Footer/Footer'
 
 const HomePage = () => {
    return (
-      <div style={{ position: 'relative' }}>
-         <Header />
+      <>
          <HeroBanner>
             <Search />
          </HeroBanner>
@@ -20,7 +18,7 @@ const HomePage = () => {
          <ServicesSection />
          <SupportSection />
          <Footer />
-      </div>
+      </>
    )
 }
 

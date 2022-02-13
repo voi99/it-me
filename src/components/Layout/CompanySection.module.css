@@ -1,0 +1,28 @@
+.header {
+   display: flex;
+   background-color: var(--light-grey);
+   color: var(--black);
+   border-radius: 0 0 1rem 1rem;
+   justify-content: center;
+   align-items: center;
+   margin: auto;
+   width: 60%;
+}
+
+.header h4 {
+   margin: 0;
+   padding: 0.8rem 2rem;
+}
+
+.company-section {
+   background-color: var(--black);
+   border-radius: 0.5rem;
+   padding: 0rem 1rem 1rem;
+}
+.company-section-content {
+   display: flex;
+   justify-content: center;
+   gap: 1rem;
+   flex-direction: column;
+   padding: 1rem 0.3rem;
+}

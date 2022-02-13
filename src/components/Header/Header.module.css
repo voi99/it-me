@@ -58,6 +58,11 @@
    border-radius: 0.5rem;
    padding: 0.2rem 1.2rem;
    text-align: center;
+   transition: 0.3s;
+}
+
+.link:hover {
+   padding: 0.2rem 2.2rem;
 }
 
 .link-first {

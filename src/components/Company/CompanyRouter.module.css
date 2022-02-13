@@ -1,0 +1,12 @@
+.company-router {
+   background-color: var(--black);
+   padding: 1.5rem 0rem;
+   border-radius: 0.5rem;
+   display: flex;
+   justify-content: space-around;
+   align-items: center;
+}
+
+.company-router svg:hover {
+   color: var(--grey-smoke);
+}

@@ -1,65 +1,54 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { fetchLatestComments } from '../../api/comment'
 import Comment from './Comment'
 import styles from './CommentsList.module.css'
-
-const comments = [
-   {
-      id: 1,
-      company: 'Coinis',
-      positive:
-         'Odlična atmosfera,najbolji šefovi ikad(realno). Zanimljivi projekti,nema pritiska niti stresa što...',
-      negative: 'Što se mene tiče nema...zato sam ovdje tri godine.',
-   },
-   {
-      id: 2,
-      company: 'Build Studio',
-      positive:
-         'Odlična atmosfera,najbolji šefovi ikad(realno). Zanimljivi projekti,nema pritiska niti stresa što...',
-      negative: 'Što se mene tiče nema...zato sam ovdje tri godine.',
-   },
-   {
-      id: 3,
-      company: 'Alicorn',
-      positive:
-         'Odlična atmosfera,najbolji šefovi ikad(realno). Zanimljivi projekti,nema pritiska niti stresa što...',
-      negative: 'Što se mene tiče nema...zato sam ovdje tri godine.',
-   },
-   {
-      id: 4,
-      company: 'Logate',
-      positive:
-         'Odlična atmosfera,najbolji šefovi ikad(realno). Zanimljivi projekti,nema pritiska niti stresa što...',
-      negative: 'Što se mene tiče nema...zato sam ovdje tri godine.',
-   },
-   {
-      id: 5,
-      company: 'Quantox',
-      positive:
-         'Odlična atmosfera,najbolji šefovi ikad(realno). Zanimljivi projekti,nema pritiska niti stresa što...',
-      negative: 'Što se mene tiče nema...zato sam ovdje tri godine.',
-   },
-   {
-      id: 6,
-      company: 'Infinum',
-      positive:
-         'Odlična atmosfera,najbolji šefovi ikad(realno). Zanimljivi projekti,nema pritiska niti stresa što...',
-      negative: 'Što se mene tiče nema...zato sam ovdje tri godine.',
-   },
-]
+import { Link } from 'react-router-dom'
 
 const CommentsList = () => {
+   const [latestComments, setLatestComments] = useState(null)
+   useEffect(() => {
+      const fetchComments = async () => {
+         const comments = await fetchLatestComments()
+         setLatestComments(comments)
+      }
+      fetchComments()
+   }, [])
+
    return (
       <section className={styles['comments-seciton']}>
          <h3>Najnoviji komentari</h3>
          <div className={styles.comments}>
-            {comments.map((comment) => (
-               <Comment
-                  key={comment.id}
-                  company={comment.company}
-                  positive={comment.positive}
-                  negative={comment.negative}
-               />
-            ))}
+            {latestComments
+               ? latestComments.map((comment) => (
+                    <Link
+                       key={comment.id}
+                       to={`/company/${comment.attributes.company.data.attributes.slug}/comments`}
+                    >
+                       <Comment
+                          key={comment.id}
+                          company={
+                             comment.attributes.company.data.attributes.name
+                          }
+                          positive={
+                             comment.attributes.positive
+                                ? `${comment.attributes.positive.slice(
+                                     0,
+                                     180
+                                  )}...`
+                                : 'Korisnik nije naveo pozitivne strane rada u kompaniji'
+                          }
+                          negative={
+                             comment.attributes.negative
+                                ? `${comment.attributes.negative.slice(
+                                     0,
+                                     180
+                                  )}...`
+                                : 'Korisnik nije naveo negativne strane rada u kompaniji'
+                          }
+                       />
+                    </Link>
+                 ))
+               : 'Loading...'}
          </div>
       </section>
    )

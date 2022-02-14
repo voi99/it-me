@@ -21,8 +21,6 @@ const CompanyPage = () => {
       getCompany()
    }, [slug])
 
-   console.log(slug)
-
    return (
       <Wrapper>
          <div className={styles['company-content']}>

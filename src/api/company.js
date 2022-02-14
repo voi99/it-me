@@ -4,7 +4,18 @@ export const fetchCompany = async (slug) => {
    try {
       const params = new URLSearchParams([
          ['filters[slug][$eq]', slug],
-         ['populate', '*'],
+         [
+            'populate',
+            [
+               'logo',
+               'comments',
+               'comments.position',
+               'comments.seniority',
+               'salaries',
+               'salaries.position',
+               'interviews',
+            ],
+         ],
       ])
       const response = await API.get('/companies', { params })
       return response.data.data[0]

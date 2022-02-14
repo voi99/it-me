@@ -23,3 +23,16 @@ export const fetchCompany = async (slug) => {
       throw Error(ex?.response?.data?.error?.message ?? 'Unknown error')
    }
 }
+
+export const filterCompanies = async (cName) => {
+   try {
+      const params = new URLSearchParams([
+         ['filters[name][$containsi]', cName],
+         ['sort', 'name:asc'],
+      ])
+      const response = await API.get('/companies', { params })
+      return response.data.data
+   } catch (ex) {
+      throw Error(ex?.response?.data?.error?.message ?? 'Unknown error')
+   }
+}

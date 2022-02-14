@@ -1,27 +1,41 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import { Link } from 'react-router-dom'
 import styles from './SearchInput.module.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch, faClose } from '@fortawesome/free-solid-svg-icons'
-
-//TESTING
-const countries = [
-   { value: 'ghana', label: 'Ghana' },
-   { value: 'nigeria', label: 'Nigeria' },
-   { value: 'kenya', label: 'Kenya' },
-   { value: 'southAfrica', label: 'South Africa' },
-   { value: 'unitedStates', label: 'United States' },
-   { value: 'canada', label: 'Canada' },
-   { value: 'germany', label: 'Germany' },
-]
+import { filterCompanies } from '../../api/company'
 
 const SearchInput = () => {
    const [openDropdown, setOpenDropdown] = useState(false)
-   const handleInputChange = () => {
-      if (!openDropdown) setOpenDropdown(true)
-   }
+   const [countries, setCountries] = useState([])
+
    const handleCloseDropdown = () => {
       setOpenDropdown(false)
+   }
+
+   const setWindowEvent = useCallback((e) => {
+      if (e.target.id !== 'search-input' && e.target.id !== 'search-dropdown')
+         handleCloseDropdown()
+   }, [])
+
+   useEffect(() => {
+      window.addEventListener('click', setWindowEvent)
+
+      return () => {
+         window.removeEventListener('click', setWindowEvent)
+      }
+   }, [setWindowEvent])
+
+   const handleInputChange = async (e) => {
+      const inputName = e.target.value.trim()
+      const filteredCountries = await filterCompanies(inputName)
+
+      if (filteredCountries.length > 0) {
+         setCountries(filteredCountries)
+         setOpenDropdown(true)
+      } else {
+         setOpenDropdown(false)
+      }
    }
 
    return (
@@ -34,15 +48,20 @@ const SearchInput = () => {
             color='var(--dark-grey)'
          />
          <input
+            id='search-input'
             type='text'
             className={styles.input}
             onChange={handleInputChange}
+            onFocus={handleInputChange}
          />
          {openDropdown && (
-            <div className={styles['search-dropdown']}>
+            <div id='search-dropdown' className={styles['search-dropdown']}>
                {countries.map((country) => (
-                  <Link to={`/${country.value}`} key={country.value}>
-                     {country.value}
+                  <Link
+                     to={`/company/${country.attributes.slug}/comments`}
+                     key={country.id}
+                  >
+                     {country.attributes.name}
                   </Link>
                ))}
             </div>

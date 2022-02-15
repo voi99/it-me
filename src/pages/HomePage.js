@@ -5,7 +5,6 @@ import Search from '../components/Search/Search'
 import InfoSection from '../components/Sections/InfoSection'
 import ServicesSection from '../components/Sections/ServicesSection'
 import SupportSection from '../components/Sections/SupportSection'
-import Footer from '../components/Footer/Footer'
 
 const HomePage = () => {
    return (
@@ -17,7 +16,6 @@ const HomePage = () => {
          <InfoSection />
          <ServicesSection />
          <SupportSection />
-         <Footer />
       </>
    )
 }

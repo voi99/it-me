@@ -32,19 +32,11 @@ const CompanyPage = () => {
                      <Routes>
                         <Route
                            path='comments'
-                           element={
-                              <CompanyComments
-                                 comments={company.attributes.comments.data}
-                              />
-                           }
+                           element={<CompanyComments company={company} />}
                         />
                         <Route
                            path='salaries'
-                           element={
-                              <CompanySalaries
-                                 salaries={company.attributes.salaries.data}
-                              />
-                           }
+                           element={<CompanySalaries company={company} />}
                         />
                         <Route
                            path='interviews'

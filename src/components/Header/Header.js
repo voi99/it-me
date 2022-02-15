@@ -57,18 +57,29 @@ const Header = () => {
                   />
                   {openDropdown && (
                      <ActionsDropdown>
-                        <Link
-                           to='/login'
-                           className={`${styles['link']} ${styles['link-first']}`}
-                        >
-                           Login
-                        </Link>
-                        <Link
-                           to='/signup'
-                           className={`${styles['link']} ${styles['link-second']}`}
-                        >
-                           Signup
-                        </Link>
+                        {!isLoggedIn ? (
+                           <>
+                              <Link
+                                 to='/login'
+                                 className={`${styles['link']} ${styles['link-first']}`}
+                              >
+                                 Login
+                              </Link>
+                              <Link
+                                 to='/signup'
+                                 className={`${styles['link']} ${styles['link-second']}`}
+                              >
+                                 Signup
+                              </Link>
+                           </>
+                        ) : (
+                           <Link
+                              to='/profile'
+                              className={`${styles['link']} ${styles['link-second']}`}
+                           >
+                              Profile
+                           </Link>
+                        )}
                      </ActionsDropdown>
                   )}
                </div>

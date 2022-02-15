@@ -1,0 +1,16 @@
+.modal h3 {
+   margin-top: 0;
+}
+
+.modal-header {
+   display: flex;
+   justify-content: space-between;
+}
+
+.icon {
+   cursor: pointer;
+}
+
+.icon:hover {
+   color: #6013a8;
+}

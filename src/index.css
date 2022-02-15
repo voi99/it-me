@@ -6,6 +6,8 @@
    --light-grey: #e0e0e0;
    --transparent-dark-grey: rgba(33, 33, 33, 0.5);
    --grey-smoke: #858585;
+   --purple: #6013a8;
+   --red: #d11e1e;
 }
 
 body {
@@ -39,6 +41,16 @@ input {
    font-family: inherit;
 }
 
+textarea {
+   resize: none;
+}
+
+select,
+textarea {
+   font-family: inherit;
+   padding: 0.6rem;
+}
+
 .container {
    margin: auto;
    max-width: 1240px;
@@ -68,4 +80,8 @@ input {
    justify-content: center;
    align-items: center;
    gap: 0.5rem;
+}
+
+.error {
+   color: var(--red);
 }

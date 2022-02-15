@@ -13,7 +13,7 @@ const CompanyDetails = ({ company }) => {
                }}
             ></div>
             <div className={styles['company-info']}>
-               <h2>{company.attributes.name}</h2>
+               <h3>{company.attributes.name}</h3>
                <p>{company.attributes.email}</p>
             </div>
          </div>

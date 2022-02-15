@@ -1,6 +1,6 @@
 .header {
    background-color: var(--transparent-dark-grey);
-   padding: 0.4rem 1.5rem;
+   padding: 0.55rem 1.5rem;
    position: fixed;
    left: 0;
    top: 0;
@@ -27,8 +27,8 @@
 }
 
 .header-logo {
-   height: 2.5rem;
-   width: 2.5rem;
+   height: 2.2rem;
+   width: 2.2rem;
    background-image: url('../../assets/grb.png');
    background-repeat: no-repeat;
    background-position: center;

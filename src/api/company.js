@@ -36,3 +36,43 @@ export const filterCompanies = async (cName) => {
       throw Error(ex?.response?.data?.error?.message ?? 'Unknown error')
    }
 }
+
+export const fetchCompanyComments = async (companyId) => {
+   try {
+      const params = new URLSearchParams([
+         ['filter[company][$eq]', companyId],
+         ['populate', 'seniority,position'],
+         ['sort', 'createdAt:desc'],
+      ])
+      const response = await API.get('/comments', { params })
+      return response.data.data
+   } catch (ex) {
+      throw Error(ex?.response?.data?.error?.message ?? 'Unknown error')
+   }
+}
+
+export const fetchCompanySalaries = async (companyId) => {
+   try {
+      const params = new URLSearchParams([
+         ['populate', 'salaries.position,salaries.seniority'],
+      ])
+      const response = await API.get(`/companies/${companyId}`, { params })
+      return response.data.data.attributes.salaries.data
+   } catch (ex) {
+      throw Error(ex?.response?.data?.error?.message ?? 'Unknown error')
+   }
+}
+
+export const fetchCompanyInterviews = async (companyId) => {
+   try {
+      const params = new URLSearchParams([
+         ['filter[company][$eq]', companyId],
+         ['populate', 'seniority,position'],
+         ['sort', 'createdAt:desc'],
+      ])
+      const response = await API.get('/interviews', { params })
+      return response.data.data
+   } catch (ex) {
+      throw Error(ex?.response?.data?.error?.message ?? 'Unknown error')
+   }
+}

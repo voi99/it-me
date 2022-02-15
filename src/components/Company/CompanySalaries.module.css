@@ -1,0 +1,30 @@
+.salaries {
+   display: flex;
+   flex-direction: column;
+   gap: 1rem;
+}
+
+.salaries-header,
+.salary-average,
+.position-salaries {
+   display: flex;
+   justify-content: space-between;
+}
+
+.salary {
+   background-color: var(--dark-grey);
+   padding: 1.2rem;
+   border-radius: 0.5rem;
+}
+
+.salaries-header {
+   padding: 0rem 1.2rem;
+}
+
+.salaries-header h4 {
+   margin: 0;
+}
+
+.salary-average {
+   align-items: center;
+}

@@ -12,3 +12,12 @@ export const fetchLatestComments = async () => {
       throw Error(ex?.response?.data?.error?.message ?? 'Unknown error')
    }
 }
+
+export const addComment = async (data) => {
+   try {
+      const response = await API.post('/comments', { data })
+      return response
+   } catch (ex) {
+      throw Error(ex?.response?.data?.error?.message ?? 'Unknown error')
+   }
+}

@@ -3,15 +3,11 @@ import { createPortal } from 'react-dom'
 import styles from './Modal.module.css'
 
 const Backdrop = (props) => {
-   return <div className={styles.backdrop} onClick={props.closeModal}></div>
+   return <div className={styles.backdrop}>{props.children}</div>
 }
 
 const ModalOverlay = (props) => {
-   return (
-      <div className={styles.modal}>
-         <div className={styles.content}>{props.children}</div>
-      </div>
-   )
+   return <div className={styles.modal}>{props.children}</div>
 }
 
 const portalEl = document.getElementById('overlays')
@@ -19,8 +15,12 @@ const portalEl = document.getElementById('overlays')
 const Modal = (props) => {
    return (
       <>
-         {createPortal(<Backdrop closeModal={props.onClose} />, portalEl)}
-         {createPortal(<ModalOverlay>{props.children}</ModalOverlay>, portalEl)}
+         {createPortal(
+            <Backdrop>
+               <ModalOverlay>{props.children}</ModalOverlay>
+            </Backdrop>,
+            portalEl
+         )}
       </>
    )
 }

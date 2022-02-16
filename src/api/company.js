@@ -37,15 +37,18 @@ export const filterCompanies = async (cName) => {
    }
 }
 
-export const fetchCompanyComments = async (companyId) => {
+export const fetchCompanyComments = async (companyId, limit) => {
    try {
       const params = new URLSearchParams([
-         ['filter[company][$eq]', companyId],
+         ['filters[company][id][$eq]', companyId],
          ['populate', 'seniority,position'],
          ['sort', 'createdAt:desc'],
+         ['pagination[limit]', limit],
       ])
       const response = await API.get('/comments', { params })
-      return response.data.data
+      const total = response.data.meta.pagination.total
+      const comments = response.data.data
+      return { total, comments }
    } catch (ex) {
       throw Error(ex?.response?.data?.error?.message ?? 'Unknown error')
    }

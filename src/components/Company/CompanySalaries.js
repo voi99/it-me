@@ -9,7 +9,7 @@ import styles from './CompanySalaries.module.css'
 const CompanySalaries = ({ company }) => {
    const [
       openModal,
-      refresh,
+      // refresh,
       refreshHandler,
       openModalHandler,
       closeModalHandler,

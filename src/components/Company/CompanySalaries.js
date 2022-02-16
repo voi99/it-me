@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import CompanySectionLayout from '../Layout/CompanySectionLayout'
-import usePage from '../../hooks/use-page'
+import usePage from '../../hooks/use-page-actions'
 import Modal from '../UI/Modal'
 import AddSalary from '../Salary/AddSalary'
 import { fetchCompanySalaries } from '../../api/company'

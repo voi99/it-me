@@ -17,7 +17,7 @@
 .company-section {
    background-color: var(--black);
    border-radius: 0.5rem;
-   padding: 0rem 1rem 1rem;
+   padding: 0rem 0.5rem 0.5rem;
 }
 .company-section-content {
    display: flex;
@@ -31,4 +31,10 @@
    transition: 0.2s;
    cursor: pointer;
    color: #6013a8;
+}
+
+@media only screen and (min-width: 768px) {
+   .company-section {
+      padding: 0rem 1rem 1rem;
+   }
 }

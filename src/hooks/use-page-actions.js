@@ -1,6 +1,6 @@
 import { useState, useCallback, useEffect } from 'react'
 
-const usePage = () => {
+const usePageActions = () => {
    const [refresh, setRefresh] = useState(false)
    const [openModal, setOpenModal] = useState()
 
@@ -31,4 +31,4 @@ const usePage = () => {
    ]
 }
 
-export default usePage
+export default usePageActions

@@ -66,15 +66,18 @@ export const fetchCompanySalaries = async (companyId) => {
    }
 }
 
-export const fetchCompanyInterviews = async (companyId) => {
+export const fetchCompanyInterviews = async (companyId, limit) => {
    try {
       const params = new URLSearchParams([
-         ['filter[company][$eq]', companyId],
+         ['filter[company][id][$eq]', companyId],
          ['populate', 'seniority,position'],
          ['sort', 'createdAt:desc'],
+         ['pagination[limit]', limit],
       ])
       const response = await API.get('/interviews', { params })
-      return response.data.data
+      const total = response.data.meta.pagination.total
+      const interviews = response.data.data
+      return { total, interviews }
    } catch (ex) {
       throw Error(ex?.response?.data?.error?.message ?? 'Unknown error')
    }

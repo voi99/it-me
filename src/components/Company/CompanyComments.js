@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react'
-import styles from './CompanyComments.module.css'
+import styles from '../../shared/CompanyCard.module.css'
 import CompanySectionLayout from '../Layout/CompanySectionLayout'
 import Modal from '../UI/Modal'
 import AddComment from '../Comment/AddComment'
 import { fetchCompanyComments } from '../../api/company'
-import usePage from '../../hooks/use-page'
+import usePage from '../../hooks/use-page-actions'
 
 const CompanyComments = ({ company }) => {
    const [
@@ -55,7 +55,7 @@ const CompanyComments = ({ company }) => {
             {comments ? (
                <>
                   {comments.map((comment) => (
-                     <div key={comment.id} className={styles.comment}>
+                     <div key={comment.id} className={styles.element}>
                         <div>
                            <h3>Pozitivno</h3>
                            <p>
@@ -78,7 +78,9 @@ const CompanyComments = ({ company }) => {
                      </div>
                   ))}
                   {loadMore && (
-                     <button onClick={handleLoadMore}>Load More</button>
+                     <button onClick={handleLoadMore} className={styles.btn}>
+                        Load More
+                     </button>
                   )}
                </>
             ) : (

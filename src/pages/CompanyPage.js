@@ -42,13 +42,7 @@ const CompanyPage = () => {
                            />
                            <Route
                               path='interviews'
-                              element={
-                                 <CompanyInterviews
-                                    interviews={
-                                       company.attributes.interviews.data
-                                    }
-                                 />
-                              }
+                              element={<CompanyInterviews company={company} />}
                            />
                         </Routes>
                      </div>

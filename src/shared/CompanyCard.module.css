@@ -1,0 +1,30 @@
+.element {
+   background-color: var(--dark-grey);
+   padding: 0.8rem;
+   border-radius: 0.5rem;
+}
+
+.element h3 {
+   margin: 0;
+}
+
+.element p {
+   color: var(--grey-smoke);
+   margin: 0 0 1rem;
+}
+
+.employee-info p {
+   color: var(--light-grey);
+   margin: 0;
+}
+
+.btn:hover {
+   color: var(--light-grey);
+   background-color: var(--dark-grey);
+}
+
+@media only screen and (min-width: 768px) {
+   .element {
+      padding: 1.5rem;
+   }
+}

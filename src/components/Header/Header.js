@@ -1,10 +1,11 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import styles from './Header.module.css'
 import { Link } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars } from '@fortawesome/free-solid-svg-icons'
 import ActionsDropdown from './ActionsDropdown'
 import { useAuthContext } from '../../hooks/use-auth'
+import { getCurrentUser } from '../../api/auth'
 
 const Header = () => {
    const [openDropdown, setOpenDropdown] = useState(false)
@@ -12,6 +13,17 @@ const Header = () => {
       setOpenDropdown((prevState) => !prevState)
    }
    const { isLoggedIn, logout } = useAuthContext()
+   const [user, setUser] = useState()
+
+   useEffect(() => {
+      const fillUser = async () => {
+         const cUser = await getCurrentUser()
+         setUser(cUser)
+      }
+      if (isLoggedIn) {
+         fillUser()
+      }
+   }, [isLoggedIn])
 
    return (
       <header className={styles.header}>
@@ -27,10 +39,10 @@ const Header = () => {
                   {isLoggedIn ? (
                      <>
                         <Link
-                           to='/profile'
+                           to='/me'
                            className={`${styles['link']} ${styles['link-first']}`}
                         >
-                           Profile
+                           {user ? user.username : 'Profile'}
                         </Link>
                         <Link
                            onClick={logout}
@@ -90,13 +102,13 @@ const Header = () => {
                         ) : (
                            <>
                               <Link
-                                 to='/profile'
+                                 to='/me'
                                  className={`${styles['link']} ${styles['link-first']}`}
                                  onClick={() => {
                                     handleDropdown()
                                  }}
                               >
-                                 Profile
+                                 {user ? user.username : 'Profile'}
                               </Link>
                               <Link
                                  onClick={() => {

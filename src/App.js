@@ -6,6 +6,7 @@ import CompanyPage from './pages/CompanyPage'
 import LoginPage from './pages/LoginPage'
 import RegisterPage from './pages/RegisterPage'
 import { useAuthContext } from './hooks/use-auth'
+import ProfilePage from './pages/ProfilePage'
 
 const App = () => {
    const { isLoggedIn } = useAuthContext()
@@ -19,6 +20,7 @@ const App = () => {
             )}
             <Route path='signup' element={<RegisterPage />}></Route>
             <Route path='company/:slug/*' element={<CompanyPage />}></Route>
+            {isLoggedIn && <Route path='me' element={<ProfilePage />}></Route>}
             <Route path='*' element={<Navigate to='/' />}></Route>
          </Routes>
       </div>

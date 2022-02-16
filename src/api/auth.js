@@ -20,3 +20,12 @@ export const createUser = async (data) => {
       throw Error(ex?.response?.data?.error?.message ?? 'Unknown error')
    }
 }
+
+export const getCurrentUser = async () => {
+   try {
+      const response = await API.get('/users/me')
+      return response.data
+   } catch (ex) {
+      throw Error(ex?.response?.data?.error?.message ?? 'Unknown error')
+   }
+}

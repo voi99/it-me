@@ -37,16 +37,13 @@ button {
    transition: 0.3s;
 }
 
-input {
-   font-family: inherit;
-}
-
 textarea {
    resize: none;
 }
 
 select,
-textarea {
+textarea,
+input {
    font-family: inherit;
    padding: 0.6rem;
 }

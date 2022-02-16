@@ -1,7 +1,7 @@
 .form-wrapper {
    max-width: 768px;
    margin: auto;
-   padding: 0.5rem 2rem 2rem;
+   padding: 0.5rem;
 }
 
 .form-wrapper h3 {
@@ -21,4 +21,10 @@
 .btn:hover {
    background-color: var(--black);
    color: var(--light-grey);
+}
+
+@media only screen and (min-width: 768px) {
+   .form-wrapper {
+      padding: 0.5rem 2rem 2rem;
+   }
 }

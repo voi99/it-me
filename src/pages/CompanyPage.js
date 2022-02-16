@@ -8,6 +8,7 @@ import CompanyRouter from '../components/Company/CompanyRouter'
 import CompanyComments from '../components/Company/CompanyComments'
 import CompanySalaries from '../components/Company/CompanySalaries'
 import CompanyInterviews from '../components/Company/CompanyInterviews'
+import Footer from '../components/Footer/Footer'
 
 const CompanyPage = () => {
    const { slug } = useParams()
@@ -22,38 +23,43 @@ const CompanyPage = () => {
    }, [slug])
 
    return (
-      <Wrapper>
-         <div className={styles['company-content']}>
-            {company ? (
-               <>
-                  <CompanyDetails company={company} />
-                  <div className={styles['company-sections']}>
-                     <CompanyRouter />
-                     <Routes>
-                        <Route
-                           path='comments'
-                           element={<CompanyComments company={company} />}
-                        />
-                        <Route
-                           path='salaries'
-                           element={<CompanySalaries company={company} />}
-                        />
-                        <Route
-                           path='interviews'
-                           element={
-                              <CompanyInterviews
-                                 interviews={company.attributes.interviews.data}
-                              />
-                           }
-                        />
-                     </Routes>
-                  </div>
-               </>
-            ) : (
-               'Loading...'
-            )}
-         </div>
-      </Wrapper>
+      <>
+         <Wrapper>
+            <div className={styles['company-content']}>
+               {company ? (
+                  <>
+                     <CompanyDetails company={company} />
+                     <div className={styles['company-sections']}>
+                        <CompanyRouter />
+                        <Routes>
+                           <Route
+                              path='comments'
+                              element={<CompanyComments company={company} />}
+                           />
+                           <Route
+                              path='salaries'
+                              element={<CompanySalaries company={company} />}
+                           />
+                           <Route
+                              path='interviews'
+                              element={
+                                 <CompanyInterviews
+                                    interviews={
+                                       company.attributes.interviews.data
+                                    }
+                                 />
+                              }
+                           />
+                        </Routes>
+                     </div>
+                  </>
+               ) : (
+                  'Loading...'
+               )}
+            </div>
+         </Wrapper>
+         <Footer />
+      </>
    )
 }
 

@@ -2,14 +2,14 @@ import React, { useEffect, useState } from 'react'
 import CompanySectionLayout from '../Layout/CompanySectionLayout'
 import usePage from '../../hooks/use-page'
 import Modal from '../UI/Modal'
-import AddComment from '../Comment/AddComment'
+import AddSalary from '../Salary/AddSalary'
 import { fetchCompanySalaries } from '../../api/company'
 import styles from './CompanySalaries.module.css'
 
 const CompanySalaries = ({ company }) => {
    const [
       openModal,
-      // refresh,
+      refresh,
       refreshHandler,
       openModalHandler,
       closeModalHandler,
@@ -40,14 +40,14 @@ const CompanySalaries = ({ company }) => {
       }
 
       fillSalaries()
-   }, [company])
+   }, [company, refresh])
 
    return (
       <>
          {openModal && (
             <Modal>
-               <AddComment
-                  title='Komentar'
+               <AddSalary
+                  title='Plata'
                   company={company}
                   onClose={closeModalHandler}
                   refresh={refreshHandler}
@@ -65,8 +65,10 @@ const CompanySalaries = ({ company }) => {
                      <div key={key} className={styles.salary}>
                         <div className={styles['salary-average']}>
                            <p>{key}</p>
-                           {salaries[key].reduce((a, b) => a + b, 0) /
-                              salaries[key].length}
+                           {(
+                              salaries[key].reduce((a, b) => a + b, 0) /
+                              salaries[key].length
+                           ).toFixed(2)}
                            €
                         </div>
                         <div className={styles['position-salaries']}>

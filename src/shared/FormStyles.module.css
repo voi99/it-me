@@ -8,3 +8,12 @@
    display: grid;
    gap: 1rem;
 }
+
+.btn {
+   transition: 0.3s;
+}
+
+.btn:hover {
+   background-color: var(--dark-grey);
+   color: var(--light-grey);
+}

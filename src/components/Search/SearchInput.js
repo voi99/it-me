@@ -53,6 +53,7 @@ const SearchInput = () => {
             className={styles.input}
             onChange={handleInputChange}
             onFocus={handleInputChange}
+            autoComplete='off'
          />
          {openDropdown && (
             <div id='search-dropdown' className={styles['search-dropdown']}>

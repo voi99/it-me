@@ -11,7 +11,7 @@ const Header = () => {
    const handleDropdown = () => {
       setOpenDropdown((prevState) => !prevState)
    }
-   const { isLoggedIn } = useAuthContext()
+   const { isLoggedIn, logout } = useAuthContext()
 
    return (
       <header className={styles.header}>
@@ -25,12 +25,21 @@ const Header = () => {
             <div className={styles['header-actions-wrapper']}>
                <div className={styles['header-actions-desktop']}>
                   {isLoggedIn ? (
-                     <Link
-                        to='/profile'
-                        className={`${styles['link']} ${styles['link-second']}`}
-                     >
-                        Profile
-                     </Link>
+                     <>
+                        <Link
+                           to='/profile'
+                           className={`${styles['link']} ${styles['link-first']}`}
+                        >
+                           Profile
+                        </Link>
+                        <Link
+                           onClick={logout}
+                           to={{}}
+                           className={`${styles['link']} ${styles['link-second']}`}
+                        >
+                           Logout
+                        </Link>
+                     </>
                   ) : (
                      <>
                         <Link
@@ -62,23 +71,44 @@ const Header = () => {
                               <Link
                                  to='/login'
                                  className={`${styles['link']} ${styles['link-first']}`}
+                                 onClick={() => {
+                                    handleDropdown()
+                                 }}
                               >
                                  Login
                               </Link>
                               <Link
                                  to='/signup'
                                  className={`${styles['link']} ${styles['link-second']}`}
+                                 onClick={() => {
+                                    handleDropdown()
+                                 }}
                               >
                                  Signup
                               </Link>
                            </>
                         ) : (
-                           <Link
-                              to='/profile'
-                              className={`${styles['link']} ${styles['link-second']}`}
-                           >
-                              Profile
-                           </Link>
+                           <>
+                              <Link
+                                 to='/profile'
+                                 className={`${styles['link']} ${styles['link-first']}`}
+                                 onClick={() => {
+                                    handleDropdown()
+                                 }}
+                              >
+                                 Profile
+                              </Link>
+                              <Link
+                                 onClick={() => {
+                                    handleDropdown()
+                                    logout()
+                                 }}
+                                 to={{}}
+                                 className={`${styles['link']} ${styles['link-second']}`}
+                              >
+                                 Logout
+                              </Link>
+                           </>
                         )}
                      </ActionsDropdown>
                   )}

@@ -4,8 +4,42 @@
    border-radius: 0.5rem;
 }
 
+.element-actions {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+}
+
+.actions-wrapper {
+   display: flex;
+   align-items: center;
+   gap: 2rem;
+}
+
+.all-actions {
+   display: flex;
+   gap: 1rem;
+}
+
+.actions {
+   cursor: pointer;
+   transition: 0.3s;
+   padding: 0.5rem;
+}
+
+.actions:hover {
+   color: var(--purple);
+   transform: scale(2) rotate(90deg);
+}
+
+.icon:hover {
+   color: var(--purple);
+   cursor: pointer;
+   transition: 0.3s;
+}
+
 .element h3 {
-   margin: 0;
+   margin: 0.25rem 0;
 }
 
 .element p {

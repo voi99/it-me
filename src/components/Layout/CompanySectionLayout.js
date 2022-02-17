@@ -3,11 +3,12 @@ import { useAuthContext } from '../../hooks/use-auth'
 import styles from './CompanySection.module.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCirclePlus } from '@fortawesome/free-solid-svg-icons'
+import { Animate } from '../../animations/Animate'
 
 const CompanySectionLayout = (props) => {
    const { isLoggedIn } = useAuthContext()
    return (
-      <div className={styles['company-section']}>
+      <Animate className={styles['company-section']} _key={'section'}>
          <div className={styles.header}>
             <div className={styles.notch}>
                <h4>{props.title}</h4>
@@ -24,7 +25,7 @@ const CompanySectionLayout = (props) => {
          <div className={styles['company-section-content']}>
             {props.children}
          </div>
-      </div>
+      </Animate>
    )
 }
 

@@ -10,15 +10,18 @@ import ProfilePage from './pages/ProfilePage'
 
 const App = () => {
    const { isLoggedIn } = useAuthContext()
+
    return (
       <div style={{ position: 'relative' }}>
          <Header />
          <Routes>
-            <Route path='/' element={<HomePage />}></Route>
+            <Route path='/' element={<HomePage key='home' />}></Route>
             {!isLoggedIn && (
-               <Route path='login' element={<LoginPage />}></Route>
+               <>
+                  <Route path='login' element={<LoginPage />}></Route>
+                  <Route path='signup' element={<RegisterPage />}></Route>
+               </>
             )}
-            <Route path='signup' element={<RegisterPage />}></Route>
             <Route path='company/:slug/*' element={<CompanyPage />}></Route>
             {isLoggedIn && <Route path='me' element={<ProfilePage />}></Route>}
             <Route path='*' element={<Navigate to='/' />}></Route>

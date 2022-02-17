@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Wrapper from '../components/Layout/Wrapper'
-import { Route, Routes, useParams } from 'react-router-dom'
+import { Route, Routes, useParams, useLocation } from 'react-router-dom'
 import styles from './CompanyPage.module.css'
 import CompanyDetails from '../components/Company/CompanyDetails'
 import { fetchCompany } from '../api/company'
@@ -9,10 +9,13 @@ import CompanyComments from '../components/Company/CompanyComments'
 import CompanySalaries from '../components/Company/CompanySalaries'
 import CompanyInterviews from '../components/Company/CompanyInterviews'
 import Footer from '../components/Footer/Footer'
+import { Animate } from '../animations/Animate'
+import { AnimatePresence } from 'framer-motion'
 
 const CompanyPage = () => {
    const { slug } = useParams()
    const [company, setCompany] = useState(null)
+   const location = useLocation()
 
    useEffect(() => {
       const getCompany = async () => {
@@ -23,7 +26,7 @@ const CompanyPage = () => {
    }, [slug])
 
    return (
-      <>
+      <Animate>
          <Wrapper>
             <div className={styles['company-content']}>
                {company ? (
@@ -31,20 +34,24 @@ const CompanyPage = () => {
                      <CompanyDetails company={company} />
                      <div className={styles['company-sections']}>
                         <CompanyRouter />
-                        <Routes>
-                           <Route
-                              path='comments'
-                              element={<CompanyComments company={company} />}
-                           />
-                           <Route
-                              path='salaries'
-                              element={<CompanySalaries company={company} />}
-                           />
-                           <Route
-                              path='interviews'
-                              element={<CompanyInterviews company={company} />}
-                           />
-                        </Routes>
+                        <AnimatePresence exitBeforeEnter>
+                           <Routes location={location} key={location.pathname}>
+                              <Route
+                                 path='comments'
+                                 element={<CompanyComments company={company} />}
+                              />
+                              <Route
+                                 path='salaries'
+                                 element={<CompanySalaries company={company} />}
+                              />
+                              <Route
+                                 path='interviews'
+                                 element={
+                                    <CompanyInterviews company={company} />
+                                 }
+                              />
+                           </Routes>
+                        </AnimatePresence>
                      </div>
                   </>
                ) : (
@@ -53,7 +60,7 @@ const CompanyPage = () => {
             </div>
          </Wrapper>
          <Footer />
-      </>
+      </Animate>
    )
 }
 

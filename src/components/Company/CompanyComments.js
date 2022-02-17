@@ -4,16 +4,27 @@ import CompanySectionLayout from '../Layout/CompanySectionLayout'
 import Modal from '../UI/Modal'
 import AddComment from '../Comment/AddComment'
 import { fetchCompanyComments } from '../../api/company'
-import usePage from '../../hooks/use-page-actions'
+import usePageActions from '../../hooks/use-page-actions'
+import { getCurrentUser } from '../../api/auth'
+import CompanyComment from '../Comment/CompanyComment'
 
 const CompanyComments = ({ company }) => {
-   const [
+   const [userId, setUserId] = useState()
+
+   useEffect(() => {
+      ;(async () => {
+         const { id } = await getCurrentUser()
+         setUserId(id)
+      })()
+   }, [])
+
+   const {
       openModal,
       refresh,
       refreshHandler,
       openModalHandler,
       closeModalHandler,
-   ] = usePage()
+   } = usePageActions()
    const [comments, setComments] = useState()
    const [limit, setLimit] = useState(4)
    const [loadMore, setLoadMore] = useState(false)
@@ -55,27 +66,13 @@ const CompanyComments = ({ company }) => {
             {comments ? (
                <>
                   {comments.map((comment) => (
-                     <div key={comment.id} className={styles.element}>
-                        <div>
-                           <h3>Pozitivno</h3>
-                           <p>
-                              {comment.attributes.positive
-                                 ? comment.attributes.positive
-                                 : 'Korisnik nije naveo pozitivne strane rada u kompaniji'}
-                           </p>
-                        </div>
-                        <div>
-                           <h3>Negativno</h3>
-                           <p>
-                              {comment.attributes.negative
-                                 ? comment.attributes.negative
-                                 : 'Korisnik nije naveo lose strane rada u kompaniji'}
-                           </p>
-                        </div>
-                        <div className={styles['employee-info']}>
-                           <p>{`${comment.attributes.position.data.attributes.name}(${comment.attributes.seniority.data.attributes.name})`}</p>
-                        </div>
-                     </div>
+                     <CompanyComment
+                        comment={comment}
+                        userId={userId}
+                        key={comment.id}
+                        company={company}
+                        refresh={refreshHandler}
+                     />
                   ))}
                   {loadMore && (
                      <button onClick={handleLoadMore} className={styles.btn}>

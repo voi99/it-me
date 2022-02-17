@@ -2,7 +2,7 @@ import React from 'react'
 import Card from '../UI/Card'
 import styles from './Comment.module.css'
 
-const Comment = ({ commentId, company, positive, negative }) => {
+const Comment = ({ company, positive, negative }) => {
    return (
       <Card className={styles.card}>
          <h3>{company}</h3>

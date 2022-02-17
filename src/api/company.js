@@ -42,7 +42,7 @@ export const fetchCompanyComments = async (companyId, limit) => {
    try {
       const params = new URLSearchParams([
          ['filters[company][id][$eq]', companyId],
-         ['populate', 'seniority,position'],
+         ['populate', 'seniority,position,user'],
          ['sort', 'createdAt:desc'],
          ['pagination[limit]', limit],
       ])

@@ -6,10 +6,11 @@ import InfoSection from '../components/Sections/InfoSection'
 import ServicesSection from '../components/Sections/ServicesSection'
 import SupportSection from '../components/Sections/SupportSection'
 import Footer from '../components/Footer/Footer'
+import { Animate } from '../animations/Animate'
 
 const HomePage = () => {
    return (
-      <>
+      <Animate _key={'homepage'}>
          <HeroBanner>
             <Search />
          </HeroBanner>
@@ -18,7 +19,7 @@ const HomePage = () => {
          <ServicesSection />
          <SupportSection />
          <Footer />
-      </>
+      </Animate>
    )
 }
 

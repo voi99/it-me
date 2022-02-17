@@ -22,13 +22,13 @@ const usePageActions = () => {
       setOpenModal(false)
    }, [])
 
-   return [
+   return {
       openModal,
       refresh,
       refreshHandler,
       openModalHandler,
       closeModalHandler,
-   ]
+   }
 }
 
 export default usePageActions

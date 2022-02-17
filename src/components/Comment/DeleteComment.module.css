@@ -1,0 +1,13 @@
+.options {
+   display: flex;
+   justify-content: flex-start;
+   gap: 1rem;
+}
+
+.options button {
+   width: 50%;
+}
+
+.options button:hover {
+   background-color: var(--purple);
+}

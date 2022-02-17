@@ -22,3 +22,12 @@ export const addComment = async (data) => {
       throw Error(ex?.response?.data?.error?.message ?? 'Unknown error')
    }
 }
+
+export const deleteComment = async (id) => {
+   try {
+      const response = await API.delete(`/comments/${id}`)
+      return response
+   } catch (ex) {
+      throw Error(ex?.response?.data?.error?.message ?? 'Unknown error')
+   }
+}

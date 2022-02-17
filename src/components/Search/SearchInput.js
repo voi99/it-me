@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react'
 import { Link } from 'react-router-dom'
 import styles from './SearchInput.module.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSearch, faClose } from '@fortawesome/free-solid-svg-icons'
+import { faSearch, faCircleXmark } from '@fortawesome/free-solid-svg-icons'
 import { filterCompanies } from '../../api/company'
 
 const SearchInput = () => {
@@ -41,7 +41,7 @@ const SearchInput = () => {
    return (
       <div className={styles['input-wrapper']}>
          <FontAwesomeIcon
-            icon={!openDropdown ? faSearch : faClose}
+            icon={!openDropdown ? faSearch : faCircleXmark}
             onClick={handleCloseDropdown}
             size='lg'
             className={styles.icon}

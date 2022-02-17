@@ -14,6 +14,7 @@ export const fetchCompany = async (slug) => {
                'salaries',
                'salaries.position',
                'interviews',
+               'year_stats',
             ],
          ],
       ])

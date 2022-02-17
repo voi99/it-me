@@ -31,10 +31,28 @@
    margin: 0;
 }
 
-.company-about {
-   padding: 0.3rem 0.9rem 1.4rem;
+.company-about,
+.company-stats {
+   padding: 0.3rem 0.9rem 0rem;
 }
 
 .company-about p {
+   color: var(--grey-smoke);
+}
+
+.table {
+   width: 100%;
+   text-align: center;
+   border-spacing: 1px;
+   padding-bottom: 2rem;
+}
+
+.table thead th {
+   background-color: var(--dark-grey);
+   padding: 0.2rem;
+   font-size: 15px;
+}
+
+.table tbody {
    color: var(--grey-smoke);
 }

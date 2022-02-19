@@ -3,29 +3,23 @@ import React, { useState, useEffect } from 'react'
 const AuthContext = React.createContext(undefined)
 
 export const AuthContextProvider = (props) => {
-   const [user, setUser] = useState({})
+   const [token, setToken] = useState('')
 
-   const isLoggedIn = !!user.jwt
+   const isLoggedIn = !!token
 
-   const loginHandler = ({ jwt, user }) => {
-      setUser({
-         jwt,
-         id: user.id,
-      })
+   const loginHandler = (jwt) => {
+      setToken(jwt)
    }
 
    const logoutHandler = () => {
-      setUser({
-         jwt: null,
-         id: null,
-      })
+      setToken('')
    }
 
    useEffect(() => {
       try {
-         const existingUser = JSON.parse(localStorage.getItem('user'))
-         if (existingUser) {
-            setUser(existingUser)
+         const existingToken = localStorage.getItem('token')
+         if (existingToken) {
+            setToken(existingToken)
          }
       } catch {
          console.log()
@@ -33,13 +27,13 @@ export const AuthContextProvider = (props) => {
    }, [])
 
    useEffect(() => {
-      localStorage.setItem('user', JSON.stringify(user))
-   }, [user])
+      localStorage.setItem('token', token)
+   }, [token])
 
    return (
       <AuthContext.Provider
          value={{
-            user,
+            token,
             isLoggedIn,
             login: loginHandler,
             logout: logoutHandler,

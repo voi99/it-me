@@ -17,6 +17,7 @@ body {
    -moz-osx-font-smoothing: grayscale;
    color: var(--light-grey);
    background-color: var(--dark-grey);
+   font-size: 16px;
 }
 
 * {

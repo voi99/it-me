@@ -6,12 +6,14 @@ import useSelectData from '../../hooks/use-select-data'
 import ModalSelects from '../UI/ModalSelects'
 import styles from '../../shared/FormStyles.module.css'
 import { getCurrentUser } from '../../api/auth'
+import { useAuthContext } from '../../hooks/use-auth'
 
 const AddComment = ({ title, company, onClose, refresh }) => {
    const { register, handleSubmit } = useForm()
 
    const [positions, seniorities] = useSelectData()
    const [error, setError] = useState('')
+   const { logout } = useAuthContext()
 
    const onSubmit = async (data) => {
       try {
@@ -25,11 +27,19 @@ const AddComment = ({ title, company, onClose, refresh }) => {
             return
          }
          const user = await getCurrentUser()
-         await addComment({ ...data, company: company.id, user: user.id })
+         await addComment({
+            ...data,
+            company: company.id,
+            user: user.id,
+            publishedAt: null,
+         })
          refresh()
          onClose()
       } catch (e) {
-         setError(e)
+         setError(e.message)
+         if (e.message === 'Unauthorized') {
+            logout()
+         }
       }
    }
 

@@ -7,6 +7,7 @@ import { loginUser } from '../api/auth'
 import styles from './LoginPage.module.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEnvelope, faLock } from '@fortawesome/free-solid-svg-icons'
+import { Animate } from '../animations/Animate'
 
 const LoginPage = () => {
    const { login } = useAuthContext()
@@ -21,7 +22,8 @@ const LoginPage = () => {
             identifier: data.email,
             password: data.password,
          })
-         login(response)
+         const { jwt } = response
+         login(jwt)
          setIsLoading(false)
       } catch (e) {
          setError(e.message)
@@ -30,53 +32,59 @@ const LoginPage = () => {
    }
 
    return (
-      <Wrapper>
-         <div className={styles['form-wrapper']}>
-            <h3>IT me - Login</h3>
-            <form action='' onSubmit={handleSubmit(onSubmit)} className='form'>
-               <div className={styles['input-wrapper']}>
-                  <FontAwesomeIcon
-                     icon={faEnvelope}
-                     size='2x'
-                     className={styles.icon}
-                  />
-                  <Input
-                     name='email'
-                     type='text'
-                     placeholder='Enter your email'
-                     required={true}
-                     register={register}
-                     autoComplete='email'
-                     className={styles.input}
-                  />
-               </div>
-               <div className={styles['input-wrapper']}>
-                  <FontAwesomeIcon
-                     icon={faLock}
-                     size='2x'
-                     className={styles.icon}
-                  />
-                  <Input
-                     name='password'
-                     type='password'
-                     placeholder='Enter your password'
-                     required={true}
-                     register={register}
-                     autoComplete='current-password'
-                     className={styles.input}
-                  />
-               </div>
-               <div>{error}</div>
-               {isLoading ? (
-                  'Loading...'
-               ) : (
-                  <button type='submit' className={styles.btn}>
-                     Login
-                  </button>
-               )}
-            </form>
-         </div>
-      </Wrapper>
+      <Animate>
+         <Wrapper>
+            <div className={styles['form-wrapper']}>
+               <h3>IT me - Login</h3>
+               <form
+                  action=''
+                  onSubmit={handleSubmit(onSubmit)}
+                  className='form'
+               >
+                  <div className={styles['input-wrapper']}>
+                     <FontAwesomeIcon
+                        icon={faEnvelope}
+                        size='2x'
+                        className={styles.icon}
+                     />
+                     <Input
+                        name='email'
+                        type='text'
+                        placeholder='Enter your email'
+                        required={true}
+                        register={register}
+                        autoComplete='email'
+                        className={styles.input}
+                     />
+                  </div>
+                  <div className={styles['input-wrapper']}>
+                     <FontAwesomeIcon
+                        icon={faLock}
+                        size='2x'
+                        className={styles.icon}
+                     />
+                     <Input
+                        name='password'
+                        type='password'
+                        placeholder='Enter your password'
+                        required={true}
+                        register={register}
+                        autoComplete='current-password'
+                        className={styles.input}
+                     />
+                  </div>
+                  <div>{error}</div>
+                  {isLoading ? (
+                     'Loading...'
+                  ) : (
+                     <button type='submit' className={styles.btn}>
+                        Login
+                     </button>
+                  )}
+               </form>
+            </div>
+         </Wrapper>
+      </Animate>
    )
 }
 

@@ -28,10 +28,10 @@ const SearchInput = () => {
 
    const handleInputChange = async (e) => {
       const inputName = e.target.value.trim()
-      const filteredCountries = await filterCompanies(inputName)
+      const filteredCompanies = await filterCompanies(inputName)
 
-      if (filteredCountries.length > 0) {
-         setCountries(filteredCountries)
+      if (filteredCompanies.length > 0) {
+         setCountries(filteredCompanies)
          setOpenDropdown(true)
       } else {
          setOpenDropdown(false)

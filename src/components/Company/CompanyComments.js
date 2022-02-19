@@ -7,16 +7,20 @@ import { fetchCompanyComments } from '../../api/company'
 import usePageActions from '../../hooks/use-page-actions'
 import { getCurrentUser } from '../../api/auth'
 import CompanyComment from '../Comment/CompanyComment'
+import { useAuthContext } from '../../hooks/use-auth'
 
 const CompanyComments = ({ company }) => {
    const [userId, setUserId] = useState()
+   const { isLoggedIn } = useAuthContext()
 
    useEffect(() => {
-      ;(async () => {
-         const { id } = await getCurrentUser()
-         setUserId(id)
-      })()
-   }, [])
+      if (isLoggedIn) {
+         ;(async () => {
+            const { id } = await getCurrentUser()
+            setUserId(id)
+         })()
+      }
+   }, [isLoggedIn])
 
    const {
       openModal,

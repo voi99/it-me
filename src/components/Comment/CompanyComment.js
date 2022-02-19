@@ -10,6 +10,7 @@ import usePageActions from '../../hooks/use-page-actions'
 import DeleteComment from './DeleteComment'
 import Modal from '../UI/Modal'
 import EditComment from './EditComment'
+import { useAuthContext } from '../../hooks/use-auth'
 
 const CompanyComment = ({ comment, userId, company, refresh }) => {
    const [showActions, setShowActions] = useState(false)
@@ -19,6 +20,7 @@ const CompanyComment = ({ comment, userId, company, refresh }) => {
    const [action, setAction] = useState('delete')
 
    const { openModal, openModalHandler, closeModalHandler } = usePageActions()
+   const { isLoggedIn } = useAuthContext()
 
    return (
       <>
@@ -67,13 +69,14 @@ const CompanyComment = ({ comment, userId, company, refresh }) => {
                            />
                         </div>
                      )}
-                     {+comment.attributes.user.data.id === +userId && (
-                        <FontAwesomeIcon
-                           icon={faEllipsisVertical}
-                           className={styles.actions}
-                           onClick={handleShowActions}
-                        />
-                     )}
+                     {isLoggedIn &&
+                        +comment.attributes.user.data.id === +userId && (
+                           <FontAwesomeIcon
+                              icon={faEllipsisVertical}
+                              className={styles.actions}
+                              onClick={handleShowActions}
+                           />
+                        )}
                   </div>
                </div>
                <p>

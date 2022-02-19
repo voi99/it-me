@@ -5,6 +5,7 @@ import { addComment } from '../../api/comment'
 import useSelectData from '../../hooks/use-select-data'
 import ModalSelects from '../UI/ModalSelects'
 import styles from '../../shared/FormStyles.module.css'
+import { getCurrentUser } from '../../api/auth'
 
 const AddComment = ({ title, company, onClose, refresh }) => {
    const { register, handleSubmit } = useForm()
@@ -23,7 +24,8 @@ const AddComment = ({ title, company, onClose, refresh }) => {
             )
             return
          }
-         await addComment({ ...data, company: company.id })
+         const user = await getCurrentUser()
+         await addComment({ ...data, company: company.id, user: user.id })
          refresh()
          onClose()
       } catch (e) {

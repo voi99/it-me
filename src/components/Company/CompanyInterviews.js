@@ -7,13 +7,13 @@ import { fetchCompanyInterviews } from '../../api/company'
 import styles from '../../shared/CompanyCard.module.css'
 
 const CompanyInterviews = ({ company }) => {
-   const [
+   const {
       openModal,
       refresh,
       refreshHandler,
       openModalHandler,
       closeModalHandler,
-   ] = usePageActions()
+   } = usePageActions()
 
    const [interviews, setInterviews] = useState()
    const [limit, setLimit] = useState(4)

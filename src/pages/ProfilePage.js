@@ -1,7 +1,8 @@
 import React from 'react'
+import Wrapper from '../components/Layout/Wrapper'
 
 const ProfilePage = () => {
-   return <div>ProfilePage</div>
+   return <Wrapper>ProfilePage</Wrapper>
 }
 
 export default ProfilePage

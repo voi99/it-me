@@ -1,3 +1,4 @@
+import Chart from '../Chart/Chart'
 import React from 'react'
 import styles from './CompanyDetails.module.css'
 
@@ -23,38 +24,33 @@ const CompanyDetails = ({ company }) => {
          </div>
          <div className={styles['company-stats']}>
             <h3>Statistika</h3>
-            <table className={styles.table}>
-               <thead>
-                  <tr>
-                     <th>Godina</th>
-                     <th>Prihodi</th>
-                     <th>Profit</th>
-                     <th>Zaposlenih</th>
-                  </tr>
-               </thead>
-               <tbody>
-                  {company.attributes['year_stats'].data.length > 0 ? (
-                     company.attributes['year_stats'].data.map((year) => (
-                        <tr key={year.attributes.year}>
-                           <td>{year.attributes.year}</td>
-                           <td>
-                              {(year.attributes.income / 100).toFixed(2)} €
-                           </td>
-                           <td>
-                              {(year.attributes.profit / 100).toFixed(2)} €
-                           </td>
-                           <td>{year.attributes.employees}</td>
-                        </tr>
-                     ))
-                  ) : (
-                     <tr>
-                        <td colSpan={4} style={{ padding: '1rem' }}>
-                           Nema podataka
-                        </td>
-                     </tr>
-                  )}
-               </tbody>
-            </table>
+            {company.attributes['year_stats'].data.length > 0 ? (
+               <>
+                  <div>
+                     <div className={styles['chart-title']}>Prihodi(€)</div>
+                     <Chart
+                        data={company.attributes['year_stats'].data}
+                        by='income'
+                     />
+                  </div>
+                  <div>
+                     <div className={styles['chart-title']}>Profit(€)</div>
+                     <Chart
+                        data={company.attributes['year_stats'].data}
+                        by='profit'
+                     />
+                  </div>
+                  <div>
+                     <div className={styles['chart-title']}>Zaposleni</div>
+                     <Chart
+                        data={company.attributes['year_stats'].data}
+                        by='employees'
+                     />
+                  </div>
+               </>
+            ) : (
+               <p>Nema podataka</p>
+            )}
          </div>
       </div>
    )

@@ -6,12 +6,28 @@ import CompanyComment from '../components/Comment/CompanyComment'
 import { getUserDraftInterviews } from '../api/interview'
 import CompanyInterview from '../components/Interview/CompanyInterview'
 import { Animate } from '../animations/Animate'
+import { useAuthContext } from '../hooks/use-auth'
 
 const ProfilePage = () => {
    const [draftComments, setDrafComments] = useState()
    const [draftInteviews, setDrafInterviews] = useState()
    const [hasCommentChange, setHasCommentChange] = useState(false)
    const [hasInterviewChange, setHasInterviewChange] = useState(false)
+   const [user, setUser] = useState()
+   const { isLoggedIn } = useAuthContext()
+
+   useEffect(() => {
+      ;(async () => {
+         if (isLoggedIn) {
+            try {
+               const fUser = await getCurrentUser()
+               setUser(fUser)
+            } catch (e) {
+               console.log(e)
+            }
+         }
+      })()
+   }, [isLoggedIn])
 
    const hasCommentChangeHandler = useCallback(() => {
       setHasCommentChange((prevState) => !prevState)
@@ -23,27 +39,29 @@ const ProfilePage = () => {
 
    useEffect(() => {
       ;(async () => {
-         try {
-            const fUser = await getCurrentUser()
-            const dInt = await getUserDraftInterviews(fUser.id)
-            setDrafInterviews(dInt)
-         } catch (e) {
-            console.log(e)
+         if (user) {
+            try {
+               const dInt = await getUserDraftInterviews(user.id)
+               setDrafInterviews(dInt)
+            } catch (e) {
+               console.log(e)
+            }
          }
       })()
-   }, [hasInterviewChange])
+   }, [hasInterviewChange, user])
 
    useEffect(() => {
       ;(async () => {
-         try {
-            const fUser = await getCurrentUser()
-            const dComm = await getUserDraftComments(fUser.id)
-            setDrafComments(dComm)
-         } catch (e) {
-            console.log(e)
+         if (user) {
+            try {
+               const dComm = await getUserDraftComments(user.id)
+               setDrafComments(dComm)
+            } catch (e) {
+               console.log(e)
+            }
          }
       })()
-   }, [hasCommentChange])
+   }, [hasCommentChange, user])
 
    return (
       <Animate>

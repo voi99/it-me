@@ -54,6 +54,7 @@ const SearchInput = () => {
             onChange={handleInputChange}
             onFocus={handleInputChange}
             autoComplete='off'
+            style={{ color: 'var(--dark-grey)' }}
          />
          {openDropdown && (
             <div id='search-dropdown' className={styles['search-dropdown']}>

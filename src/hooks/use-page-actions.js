@@ -1,11 +1,11 @@
 import { useState, useCallback, useEffect } from 'react'
 
 const usePageActions = () => {
-   const [refresh, setRefresh] = useState(false)
+   const [hasChange, setHasChange] = useState(false)
    const [openModal, setOpenModal] = useState()
 
-   const refreshHandler = useCallback(() => {
-      setRefresh((prevState) => !prevState)
+   const hasChangeHandler = useCallback(() => {
+      setHasChange((prevState) => !prevState)
    }, [])
 
    useEffect(() => {
@@ -24,8 +24,8 @@ const usePageActions = () => {
 
    return {
       openModal,
-      refresh,
-      refreshHandler,
+      hasChange,
+      hasChangeHandler,
       openModalHandler,
       closeModalHandler,
    }

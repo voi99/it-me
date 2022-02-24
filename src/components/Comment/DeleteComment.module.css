@@ -9,5 +9,7 @@
 }
 
 .options button:hover {
-   background-color: var(--purple);
+   background-color: var(--dark-grey);
+   color: #ffffff;
+   transform: scale(1.03);
 }

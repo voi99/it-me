@@ -11,8 +11,15 @@ import DeleteComment from './DeleteComment'
 import Modal from '../UI/Modal'
 import EditComment from './EditComment'
 import { useAuthContext } from '../../hooks/use-auth'
+import { Animate } from '../../animations/Animate'
 
-const CompanyComment = ({ comment, userId, company, refresh }) => {
+const CompanyComment = ({
+   comment,
+   userId,
+   company,
+   refresh,
+   commentHasChanged,
+}) => {
    const [showActions, setShowActions] = useState(false)
    const handleShowActions = () => {
       setShowActions((prevState) => !prevState)
@@ -33,6 +40,7 @@ const CompanyComment = ({ comment, userId, company, refresh }) => {
                      refresh={refresh}
                      company={company}
                      commentId={comment.id}
+                     commentHasChanged={commentHasChanged}
                   />
                ) : (
                   <EditComment
@@ -40,6 +48,8 @@ const CompanyComment = ({ comment, userId, company, refresh }) => {
                      onClose={closeModalHandler}
                      refresh={refresh}
                      company={company}
+                     comment={comment}
+                     commentHasChanged={commentHasChanged}
                   />
                )}
             </Modal>
@@ -50,7 +60,7 @@ const CompanyComment = ({ comment, userId, company, refresh }) => {
                   <h3>Pozitivno</h3>
                   <div className={styles['actions-wrapper']}>
                      {showActions && (
-                        <div className={styles['all-actions']}>
+                        <Animate className={styles['all-actions']}>
                            <FontAwesomeIcon
                               icon={faPenToSquare}
                               onClick={() => {
@@ -67,7 +77,7 @@ const CompanyComment = ({ comment, userId, company, refresh }) => {
                               }}
                               className={styles.icon}
                            />
-                        </div>
+                        </Animate>
                      )}
                      {isLoggedIn &&
                         +comment.attributes.user.data.id === +userId && (

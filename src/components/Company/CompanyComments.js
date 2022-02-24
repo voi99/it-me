@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import styles from '../../shared/CompanyCard.module.css'
 import CompanySectionLayout from '../Layout/CompanySectionLayout'
 import Modal from '../UI/Modal'
@@ -8,10 +8,18 @@ import usePageActions from '../../hooks/use-page-actions'
 import { getCurrentUser } from '../../api/auth'
 import CompanyComment from '../Comment/CompanyComment'
 import { useAuthContext } from '../../hooks/use-auth'
+import toast, { Toaster } from 'react-hot-toast'
 
 const CompanyComments = ({ company }) => {
    const [userId, setUserId] = useState()
    const { isLoggedIn } = useAuthContext()
+   const [commentChange, setCommentChange] = useState(false)
+
+   const commentChangeHandler = useCallback(() => {
+      setCommentChange((prevState) => !prevState)
+   }, [])
+
+   console.log(commentChange)
 
    useEffect(() => {
       if (isLoggedIn) {
@@ -24,8 +32,8 @@ const CompanyComments = ({ company }) => {
 
    const {
       openModal,
-      refresh,
-      refreshHandler,
+      hasChange,
+      hasChangeHandler,
       openModalHandler,
       closeModalHandler,
    } = usePageActions()
@@ -47,7 +55,14 @@ const CompanyComments = ({ company }) => {
          setComments(comments)
       }
       fillComments()
-   }, [company, refresh, limit])
+   }, [company, limit, commentChange])
+
+   useEffect(() => {
+      if (hasChange) {
+         toast('Komentar ceka odobrenje 😀')
+         hasChangeHandler(false)
+      }
+   }, [hasChange, hasChangeHandler])
 
    const handleLoadMore = () => {
       const newLimit = limit + 4
@@ -56,13 +71,14 @@ const CompanyComments = ({ company }) => {
 
    return (
       <>
+         <Toaster />
          {openModal && (
             <Modal>
                <AddComment
                   title='Komentar'
                   company={company}
                   onClose={closeModalHandler}
-                  refresh={refreshHandler}
+                  refresh={hasChangeHandler}
                />
             </Modal>
          )}
@@ -75,7 +91,8 @@ const CompanyComments = ({ company }) => {
                         userId={userId}
                         key={comment.id}
                         company={company}
-                        refresh={refreshHandler}
+                        refresh={hasChangeHandler}
+                        commentHasChanged={commentChangeHandler}
                      />
                   ))}
                   {loadMore && (

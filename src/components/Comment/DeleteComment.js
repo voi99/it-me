@@ -3,12 +3,18 @@ import ModalLayout from '../Layout/ModalLayout'
 import styles from './DeleteComment.module.css'
 import { deleteComment } from '../../api/comment'
 
-const DeleteComment = ({ title, company, onClose, commentId, refresh }) => {
+const DeleteComment = ({
+   title,
+   company,
+   onClose,
+   commentId,
+   commentHasChanged,
+}) => {
    const [error, setError] = useState()
    const handleDelete = async () => {
       try {
          await deleteComment(commentId)
-         refresh()
+         commentHasChanged()
          onClose()
       } catch (e) {
          setError(e.message)

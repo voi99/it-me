@@ -26,13 +26,13 @@
 
 .btn {
    width: 100%;
-   background-color: var(--light-grey);
+   background-color: var(--black);
    font-size: medium;
 }
 
 .btn:hover {
-   background-color: var(--black);
-   color: var(--light-grey);
+   background-color: var(--light-grey);
+   color: var(--black);
 }
 
 @media only screen and (min-width: 768px) {

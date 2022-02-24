@@ -25,7 +25,7 @@ const App = () => {
                </>
             )}
             <Route path='company/:slug/*' element={<CompanyPage />}></Route>
-            {isLoggedIn && <Route path='me' element={<ProfilePage />}></Route>}
+            <Route path='me' element={<ProfilePage />}></Route>
             <Route path='*' element={<Navigate to='/' />}></Route>
          </Routes>
       </div>

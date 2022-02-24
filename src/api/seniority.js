@@ -5,7 +5,7 @@ export const fetchSeniorities = async () => {
       const response = await API.get('/seniorities')
       const seniorities = response.data.data.map((position) => ({
          value: position.id,
-         name: position.attributes.name,
+         label: position.attributes.name,
       }))
       return seniorities
    } catch (ex) {

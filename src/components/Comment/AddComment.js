@@ -7,9 +7,10 @@ import ModalSelects from '../UI/ModalSelects'
 import styles from '../../shared/FormStyles.module.css'
 import { getCurrentUser } from '../../api/auth'
 import { useAuthContext } from '../../hooks/use-auth'
+import ModalTextarea from '../UI/ModalTextarea'
 
 const AddComment = ({ title, company, onClose, refresh }) => {
-   const { register, handleSubmit } = useForm()
+   const { register, handleSubmit, control } = useForm()
 
    const [positions, seniorities] = useSelectData()
    const [error, setError] = useState('')
@@ -25,12 +26,20 @@ const AddComment = ({ title, company, onClose, refresh }) => {
                'Morate dodati pozitivne ili negativne strane rada u firmi!'
             )
             return
+         } else if (!data.position || !data.seniority) {
+            setError('Morate dodati poziciju i nivo iskustva!')
+            return
          }
          const user = await getCurrentUser()
+
+         console.log(data)
+
          await addComment({
             ...data,
             company: company.id,
             user: user.id,
+            position: data.position.value,
+            seniority: data.seniority.value,
             publishedAt: null,
          })
          refresh()
@@ -50,29 +59,23 @@ const AddComment = ({ title, company, onClose, refresh }) => {
                positions={positions}
                seniorities={seniorities}
                register={register}
+               control={control}
             />
 
-            <div className={styles['input-wrapper']}>
-               <label htmlFor='positive'>Pozitivno</label>
-               <textarea
-                  name='positive'
-                  id='positive'
-                  cols='30'
-                  rows='10'
-                  {...register('positive')}
-               ></textarea>
-            </div>
+            <ModalTextarea
+               name='positive'
+               label='Pozitivno'
+               defaultValue=''
+               register={register}
+            />
 
-            <div className={styles['input-wrapper']}>
-               <label htmlFor='negative'>Negativno</label>
-               <textarea
-                  name='negative'
-                  id='negative'
-                  cols='30'
-                  rows='10'
-                  {...register('negative')}
-               ></textarea>
-            </div>
+            <ModalTextarea
+               name='negative'
+               label='Negativno'
+               defaultValue=''
+               register={register}
+            />
+
             <div className='error'>{error}</div>
             <button className={styles.btn}>Dodaj komentar</button>
          </form>

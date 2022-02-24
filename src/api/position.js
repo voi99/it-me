@@ -5,7 +5,7 @@ export const fetchPositions = async () => {
       const response = await API.get('/positions')
       const positions = response.data.data.map((position) => ({
          value: position.id,
-         name: position.attributes.name,
+         label: position.attributes.name,
       }))
       return positions
    } catch (ex) {

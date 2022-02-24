@@ -1,49 +1,57 @@
 import React from 'react'
 import styles from './ModalSelects.module.css'
+import { Controller } from 'react-hook-form'
+import ReactSelect from 'react-select'
 
-const ModalSelects = ({ positions, seniorities, register }) => {
+const ModalSelects = ({ positions, seniorities, control }) => {
    return (
       <>
          <div className={styles['input-wrapper']}>
             <label htmlFor='position'>Radna pozicija</label>
-            <select
+            <Controller
                name='position'
-               id='position'
-               {...register('position')}
-               defaultValue=''
-               required
-            >
-               <option value='' disabled hidden>
-                  Izaberi poziciju
-               </option>
-               {positions &&
-                  positions.map((position) => (
-                     <option value={position.value} key={position.value}>
-                        {position.name}
-                     </option>
-                  ))}
-            </select>
+               render={({ field }) => (
+                  <ReactSelect
+                     options={positions}
+                     {...field}
+                     id='position'
+                     placeholder='Izaberi radnu poziciju'
+                     styles={{
+                        option: (provided, state) => ({
+                           ...provided,
+                           color: state.isSelected ? 'white' : 'black',
+                           padding: 10,
+                           background: state.isSelected ? '' : 'white',
+                        }),
+                     }}
+                  />
+               )}
+               control={control}
+            />
          </div>
 
          <div className={styles['input-wrapper']}>
             <label htmlFor='seniority'>Nivo iskustva</label>
-            <select
+            <Controller
                name='seniority'
-               id='seniority'
-               required
-               {...register('seniority')}
-               defaultValue=''
-            >
-               <option value='' disabled hidden>
-                  Izaberi nivo znanja
-               </option>
-               {seniorities &&
-                  seniorities.map((seniority) => (
-                     <option value={seniority.value} key={seniority.value}>
-                        {seniority.name}
-                     </option>
-                  ))}
-            </select>
+               render={({ field }) => (
+                  <ReactSelect
+                     options={seniorities}
+                     {...field}
+                     id='seniority'
+                     placeholder='Izaberi nivo iskustva'
+                     styles={{
+                        option: (provided, state) => ({
+                           ...provided,
+                           color: state.isSelected ? 'white' : 'black',
+                           padding: 10,
+                           background: state.isSelected ? '' : 'white',
+                        }),
+                     }}
+                  />
+               )}
+               control={control}
+            />
          </div>
       </>
    )

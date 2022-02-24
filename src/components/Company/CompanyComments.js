@@ -14,22 +14,6 @@ const CompanyComments = ({ company }) => {
    const [userId, setUserId] = useState()
    const { isLoggedIn } = useAuthContext()
    const [commentChange, setCommentChange] = useState(false)
-
-   const commentChangeHandler = useCallback(() => {
-      setCommentChange((prevState) => !prevState)
-   }, [])
-
-   console.log(commentChange)
-
-   useEffect(() => {
-      if (isLoggedIn) {
-         ;(async () => {
-            const { id } = await getCurrentUser()
-            setUserId(id)
-         })()
-      }
-   }, [isLoggedIn])
-
    const {
       openModal,
       hasChange,
@@ -40,6 +24,19 @@ const CompanyComments = ({ company }) => {
    const [comments, setComments] = useState()
    const [limit, setLimit] = useState(4)
    const [loadMore, setLoadMore] = useState(false)
+
+   const commentChangeHandler = useCallback(() => {
+      setCommentChange((prevState) => !prevState)
+   }, [])
+
+   useEffect(() => {
+      if (isLoggedIn) {
+         ;(async () => {
+            const { id } = await getCurrentUser()
+            setUserId(id)
+         })()
+      }
+   }, [isLoggedIn])
 
    useEffect(() => {
       const fillComments = async () => {

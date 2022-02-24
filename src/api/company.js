@@ -71,7 +71,7 @@ export const fetchCompanyInterviews = async (companyId, limit) => {
    try {
       const params = new URLSearchParams([
          ['filter[company][id][$eq]', companyId],
-         ['populate', 'seniority,position'],
+         ['populate', 'seniority,position,user'],
          ['sort', 'createdAt:desc'],
          ['pagination[limit]', limit],
       ])

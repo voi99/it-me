@@ -1,16 +1,20 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import CompanySectionLayout from '../Layout/CompanySectionLayout'
 import usePageActions from '../../hooks/use-page-actions'
 import Modal from '../UI/Modal'
 import AddInterview from '../Interview/AddInterview'
 import { fetchCompanyInterviews } from '../../api/company'
 import styles from '../../shared/CompanyCard.module.css'
+import CompanyInterview from '../Interview/CompanyInterview'
+import { useAuthContext } from '../../hooks/use-auth'
+import { getCurrentUser } from '../../api/auth'
+import toast, { Toaster } from 'react-hot-toast'
 
 const CompanyInterviews = ({ company }) => {
    const {
       openModal,
-      refresh,
-      refreshHandler,
+      hasChange,
+      hasChangeHandler,
       openModalHandler,
       closeModalHandler,
    } = usePageActions()
@@ -18,6 +22,22 @@ const CompanyInterviews = ({ company }) => {
    const [interviews, setInterviews] = useState()
    const [limit, setLimit] = useState(4)
    const [loadMore, setLoadMore] = useState(false)
+   const { isLoggedIn } = useAuthContext()
+   const [userId, setUserId] = useState()
+   const [interviewChange, setInterviewChange] = useState(false)
+
+   const interviewChangeHandler = useCallback(() => {
+      setInterviewChange((prevState) => !prevState)
+   }, [])
+
+   useEffect(() => {
+      if (isLoggedIn) {
+         ;(async () => {
+            const { id } = await getCurrentUser()
+            setUserId(id)
+         })()
+      }
+   }, [isLoggedIn])
 
    useEffect(() => {
       const fillInterviews = async () => {
@@ -33,7 +53,14 @@ const CompanyInterviews = ({ company }) => {
          setInterviews(interviews)
       }
       fillInterviews()
-   }, [company, refresh, limit])
+   }, [company, limit, interviewChange])
+
+   useEffect(() => {
+      if (hasChange) {
+         toast('Intervju ceka odobrenje 😀')
+         hasChangeHandler(false)
+      }
+   }, [hasChange, hasChangeHandler])
 
    const handleLoadMore = () => {
       const newLimit = limit + 4
@@ -42,13 +69,14 @@ const CompanyInterviews = ({ company }) => {
 
    return (
       <>
+         <Toaster />
          {openModal && (
             <Modal>
                <AddInterview
                   title='Intervju'
                   company={company}
                   onClose={closeModalHandler}
-                  refresh={refreshHandler}
+                  refresh={hasChangeHandler}
                />
             </Modal>
          )}
@@ -56,27 +84,14 @@ const CompanyInterviews = ({ company }) => {
             {interviews ? (
                <>
                   {interviews.map((interview) => (
-                     <div key={interview.id} className={styles.element}>
-                        <div>
-                           <h3>HR intervju</h3>
-                           <p>
-                              {interview.attributes.hrInterview
-                                 ? interview.attributes.hrInterview
-                                 : 'Korisnik nije naveo utiske sa HR intervju-a'}
-                           </p>
-                        </div>
-                        <div>
-                           <h3>Tehnicki intervju</h3>
-                           <p>
-                              {interview.attributes.technicalInterview
-                                 ? interview.attributes.technicalInterview
-                                 : 'Korisnik nije naveo utiske sa tehnickog intervju-a'}
-                           </p>
-                        </div>
-                        <div className={styles['employee-info']}>
-                           <p>{`${interview.attributes.position.data.attributes.name}(${interview.attributes.seniority.data.attributes.name})`}</p>
-                        </div>
-                     </div>
+                     <CompanyInterview
+                        interview={interview}
+                        userId={userId}
+                        key={interview.id}
+                        company={company}
+                        refresh={hasChangeHandler}
+                        interviewHasChanged={interviewChangeHandler}
+                     />
                   ))}
                   {loadMore && (
                      <button onClick={handleLoadMore} className={styles.btn}>

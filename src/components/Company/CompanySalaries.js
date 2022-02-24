@@ -9,8 +9,8 @@ import styles from './CompanySalaries.module.css'
 const CompanySalaries = ({ company }) => {
    const {
       openModal,
-      refresh,
-      refreshHandler,
+      hasChange,
+      hasChangeHandler,
       openModalHandler,
       closeModalHandler,
    } = usePageActions()
@@ -40,7 +40,7 @@ const CompanySalaries = ({ company }) => {
       }
 
       fillSalaries()
-   }, [company, refresh])
+   }, [company, hasChange])
 
    return (
       <>
@@ -50,7 +50,7 @@ const CompanySalaries = ({ company }) => {
                   title='Plata'
                   company={company}
                   onClose={closeModalHandler}
-                  refresh={refreshHandler}
+                  refresh={hasChangeHandler}
                />
             </Modal>
          )}

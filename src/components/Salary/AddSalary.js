@@ -8,12 +8,21 @@ import { addSalary } from '../../api/salary'
 
 const AddSalary = ({ title, company, onClose, refresh }) => {
    const [positions, seniorities] = useSelectData()
-   const { register, handleSubmit } = useForm()
+   const { register, handleSubmit, control } = useForm()
    const [error, setError] = useState()
 
    const onSubmit = async (data) => {
       try {
-         await addSalary({ ...data, company: company.id })
+         if (!data.position || !data.seniority) {
+            setError('Morate dodati poziciju i nivo iskustva!')
+            return
+         }
+         await addSalary({
+            ...data,
+            position: data.position.value,
+            seniority: data.seniority.value,
+            company: company.id,
+         })
          refresh()
          onClose()
       } catch (e) {
@@ -28,6 +37,7 @@ const AddSalary = ({ title, company, onClose, refresh }) => {
                positions={positions}
                seniorities={seniorities}
                register={register}
+               control={control}
             />
             <div className={styles['input-wrapper']}>
                <label htmlFor='amount'>Plata</label>
@@ -38,6 +48,11 @@ const AddSalary = ({ title, company, onClose, refresh }) => {
                   id='amount'
                   required
                   {...register('amount')}
+                  style={{
+                     color: 'var(--dark-grey)',
+                     backgroundColor: 'white',
+                     borderRadius: '0.3rem',
+                  }}
                />
             </div>
             <div className='error'>{error}</div>

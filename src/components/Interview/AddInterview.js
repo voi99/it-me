@@ -5,12 +5,16 @@ import useSelectData from '../../hooks/use-select-data'
 import ModalSelects from '../UI/ModalSelects'
 import styles from '../../shared/FormStyles.module.css'
 import { addInterview } from '../../api/interview'
+import { getCurrentUser } from '../../api/auth'
+import { useAuthContext } from '../../hooks/use-auth'
+import ModalTextarea from '../UI/ModalTextarea'
 
 const AddInterview = ({ title, company, onClose, refresh }) => {
-   const { register, handleSubmit } = useForm()
+   const { register, handleSubmit, control } = useForm()
 
    const [positions, seniorities] = useSelectData()
    const [error, setError] = useState('')
+   const { logout } = useAuthContext()
 
    const onSubmit = async (data) => {
       try {
@@ -20,12 +24,27 @@ const AddInterview = ({ title, company, onClose, refresh }) => {
          ) {
             setError('Morate dodati utisak sa HR ili Tehnickog intervju-a!')
             return
+         } else if (!data.position || !data.seniority) {
+            setError('Morate dodati poziciju i nivo iskustva!')
+            return
          }
-         await addInterview({ ...data, company: company.id })
+         const user = await getCurrentUser()
+
+         await addInterview({
+            ...data,
+            company: company.id,
+            user: user.id,
+            position: data.position.value,
+            seniority: data.seniority.value,
+            publishedAt: null,
+         })
          refresh()
          onClose()
       } catch (e) {
-         setError(e)
+         setError(e.message)
+         if (e.message === 'Unauthorized') {
+            logout()
+         }
       }
    }
 
@@ -36,28 +55,22 @@ const AddInterview = ({ title, company, onClose, refresh }) => {
                positions={positions}
                seniorities={seniorities}
                register={register}
+               control={control}
             />
-            <div className={styles['input-wrapper']}>
-               <label htmlFor='positive'>HR intervju</label>
-               <textarea
-                  name='hrInterview'
-                  id='hrInterview'
-                  cols='30'
-                  rows='10'
-                  {...register('hrInterview')}
-               ></textarea>
-            </div>
 
-            <div className={styles['input-wrapper']}>
-               <label htmlFor='technicalInterview'>Tehnicki intervju</label>
-               <textarea
-                  name='technicalInterview'
-                  id='technicalInterview'
-                  cols='30'
-                  rows='10'
-                  {...register('technicalInterview')}
-               ></textarea>
-            </div>
+            <ModalTextarea
+               name='hrInterview'
+               label='HR intervju'
+               defaultValue=''
+               register={register}
+            />
+
+            <ModalTextarea
+               name='technicalInterview'
+               label='Tehnicki intervju'
+               defaultValue=''
+               register={register}
+            />
             <div className='error'>{error}</div>
             <button className={styles.btn}>Dodaj intervju</button>
          </form>

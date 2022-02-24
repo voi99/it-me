@@ -32,8 +32,6 @@ const AddComment = ({ title, company, onClose, refresh }) => {
          }
          const user = await getCurrentUser()
 
-         console.log(data)
-
          await addComment({
             ...data,
             company: company.id,

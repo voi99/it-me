@@ -17,3 +17,12 @@ export const deleteInterview = async (id) => {
       throw Error(ex?.response?.data?.error?.message ?? 'Unknown error')
    }
 }
+
+export const updateInterview = async (id, data) => {
+   try {
+      const response = await API.put(`/interviews/${id}`, { data })
+      return response
+   } catch (ex) {
+      throw Error(ex?.response?.data?.error?.message ?? 'Unknown error')
+   }
+}

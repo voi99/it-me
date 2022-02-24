@@ -26,3 +26,18 @@ export const updateInterview = async (id, data) => {
       throw Error(ex?.response?.data?.error?.message ?? 'Unknown error')
    }
 }
+
+export const getUserDraftInterviews = async (userId) => {
+   try {
+      const params = new URLSearchParams([
+         ['filters[user][id][$eq]', userId],
+         ['publicationState', 'preview'],
+         ['filters[publishedAt][$null]', 'true'],
+         ['populate', ['company', 'position', 'seniority', 'user']],
+      ])
+      const response = await API.get('/interviews', { params })
+      return response.data.data
+   } catch (ex) {
+      throw Error(ex?.response?.data?.error?.message ?? 'Unknown error')
+   }
+}

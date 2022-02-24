@@ -18,16 +18,12 @@ export const AuthContextProvider = (props) => {
    useEffect(() => {
       try {
          const existingToken = localStorage.getItem('token')
-         if (existingToken) {
+         if (existingToken !== token) {
             setToken(existingToken)
          }
       } catch {
          console.log()
       }
-   }, [])
-
-   useEffect(() => {
-      localStorage.setItem('token', token)
    }, [token])
 
    return (

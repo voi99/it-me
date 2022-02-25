@@ -3,14 +3,15 @@ import React from 'react'
 import styles from './CompanyDetails.module.css'
 
 const CompanyDetails = ({ company }) => {
-   const api_url = 'http://localhost:1337'
+   const backend_url = process.env.REACT_APP_BACKEND_URL
+
    return (
       <div className={styles['company-details']}>
          <div className={styles['company-header']}>
             <div
                className={styles['company-logo']}
                style={{
-                  backgroundImage: `url(${api_url}${company.attributes.logo.data.attributes.url})`,
+                  backgroundImage: `url(${backend_url}${company.attributes.logo.data.attributes.url})`,
                }}
             ></div>
             <div className={styles['company-info']}>

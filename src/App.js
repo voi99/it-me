@@ -8,6 +8,7 @@ import RegisterPage from './pages/RegisterPage'
 import { useAuthContext } from './hooks/use-auth'
 import ProfilePage from './pages/ProfilePage'
 import VerifyEmail from './pages/VerifyEmail'
+import Credits from './pages/Credits'
 
 const App = () => {
    const { isLoggedIn } = useAuthContext()
@@ -26,6 +27,7 @@ const App = () => {
             )}
             <Route path='company/:slug/*' element={<CompanyPage />}></Route>
             <Route path='me' element={<ProfilePage />}></Route>
+            <Route path='credits' element={<Credits />}></Route>
             <Route path='*' element={<Navigate to='/' />}></Route>
          </Routes>
       </div>

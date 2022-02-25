@@ -21,7 +21,7 @@ const SupportSection = () => {
             </h2>
             <p>
                +382 69 --- ---
-               <br /> itme@gmail.com
+               <br /> wecodemne@gmail.com
             </p>
          </div>
       </section>

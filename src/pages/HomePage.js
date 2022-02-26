@@ -10,7 +10,7 @@ import { Animate } from '../animations/Animate'
 
 const HomePage = () => {
    return (
-      <Animate _key={'homepage'}>
+      <Animate>
          <HeroBanner>
             <Search />
          </HeroBanner>

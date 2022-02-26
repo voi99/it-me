@@ -13,9 +13,9 @@ export const Animate = (props) => {
          animate='enter'
          exit='exit'
          variants={variants}
-         transition={{ duration: 0.4, type: 'easeInOut' }}
+         transition={{ duration: 0.5, type: 'easeInOut' }}
          className={props.className}
-         key={props._key}
+         id={props.id}
       >
          {props.children}
       </motion.div>

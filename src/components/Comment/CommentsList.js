@@ -26,23 +26,25 @@ const CommentsList = () => {
                     >
                        <Comment
                           key={comment.id}
-                          company={
-                             comment.attributes.company.data.attributes.name
-                          }
+                          company={comment.attributes.company}
                           positive={
                              comment.attributes.positive
-                                ? `${comment.attributes.positive.slice(
-                                     0,
-                                     180
-                                  )}...`
+                                ? comment.attributes.positive.length > 180
+                                   ? `${comment.attributes.positive.slice(
+                                        0,
+                                        180
+                                     )}...`
+                                   : comment.attributes.positive
                                 : 'Korisnik nije naveo pozitivne strane rada u kompaniji'
                           }
                           negative={
                              comment.attributes.negative
-                                ? `${comment.attributes.negative.slice(
-                                     0,
-                                     180
-                                  )}...`
+                                ? comment.attributes.negative.length > 180
+                                   ? `${comment.attributes.negative.slice(
+                                        0,
+                                        180
+                                     )}...`
+                                   : comment.attributes.negative
                                 : 'Korisnik nije naveo negativne strane rada u kompaniji'
                           }
                        />

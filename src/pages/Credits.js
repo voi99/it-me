@@ -1,7 +1,8 @@
 import React from 'react'
+import { Animate } from '../animations/Animate'
 
 const Credits = () => {
-   return <div>Credits</div>
+   return <Animate>Credits</Animate>
 }
 
 export default Credits

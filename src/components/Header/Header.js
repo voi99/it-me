@@ -2,10 +2,11 @@ import React, { useState, useEffect } from 'react'
 import styles from './Header.module.css'
 import { Link } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBars } from '@fortawesome/free-solid-svg-icons'
+import { faBars, faClose } from '@fortawesome/free-solid-svg-icons'
 import ActionsDropdown from './ActionsDropdown'
 import { useAuthContext } from '../../hooks/use-auth'
 import { getCurrentUser } from '../../api/auth'
+import { AnimatePresence } from 'framer-motion'
 
 const Header = () => {
    const [openDropdown, setOpenDropdown] = useState(false)
@@ -71,59 +72,61 @@ const Header = () => {
                </div>
                <div className={styles['header-actions-mobile']}>
                   <FontAwesomeIcon
-                     icon={faBars}
+                     icon={openDropdown ? faClose : faBars}
                      size='xl'
                      onClick={handleDropdown}
                      className={styles.icon}
                   />
-                  {openDropdown && (
-                     <ActionsDropdown>
-                        {!isLoggedIn ? (
-                           <>
-                              <Link
-                                 to='/login'
-                                 className={`${styles['link']} ${styles['link-first']}`}
-                                 onClick={() => {
-                                    handleDropdown()
-                                 }}
-                              >
-                                 Login
-                              </Link>
-                              <Link
-                                 to='/signup'
-                                 className={`${styles['link']} ${styles['link-second']}`}
-                                 onClick={() => {
-                                    handleDropdown()
-                                 }}
-                              >
-                                 Signup
-                              </Link>
-                           </>
-                        ) : (
-                           <>
-                              <Link
-                                 to='/me'
-                                 className={`${styles['link']} ${styles['link-first']}`}
-                                 onClick={() => {
-                                    handleDropdown()
-                                 }}
-                              >
-                                 {user ? user.username : 'Profile'}
-                              </Link>
-                              <Link
-                                 onClick={() => {
-                                    handleDropdown()
-                                    logout()
-                                 }}
-                                 to={{}}
-                                 className={`${styles['link']} ${styles['link-second']}`}
-                              >
-                                 Logout
-                              </Link>
-                           </>
-                        )}
-                     </ActionsDropdown>
-                  )}
+                  <AnimatePresence exitBeforeEnter>
+                     {openDropdown && (
+                        <ActionsDropdown>
+                           {!isLoggedIn ? (
+                              <>
+                                 <Link
+                                    to='/login'
+                                    className={`${styles['link']} ${styles['link-first']}`}
+                                    onClick={() => {
+                                       handleDropdown()
+                                    }}
+                                 >
+                                    Login
+                                 </Link>
+                                 <Link
+                                    to='/signup'
+                                    className={`${styles['link']} ${styles['link-second']}`}
+                                    onClick={() => {
+                                       handleDropdown()
+                                    }}
+                                 >
+                                    Signup
+                                 </Link>
+                              </>
+                           ) : (
+                              <>
+                                 <Link
+                                    to='/me'
+                                    className={`${styles['link']} ${styles['link-first']}`}
+                                    onClick={() => {
+                                       handleDropdown()
+                                    }}
+                                 >
+                                    {user ? user.username : 'Profile'}
+                                 </Link>
+                                 <Link
+                                    onClick={() => {
+                                       handleDropdown()
+                                       logout()
+                                    }}
+                                    to={{}}
+                                    className={`${styles['link']} ${styles['link-second']}`}
+                                 >
+                                    Logout
+                                 </Link>
+                              </>
+                           )}
+                        </ActionsDropdown>
+                     )}
+                  </AnimatePresence>
                </div>
             </div>
          </div>

@@ -4,7 +4,7 @@ export const fetchLatestComments = async () => {
    try {
       const params = new URLSearchParams([
          ['sort[0]', 'createdAt:desc'],
-         ['populate', '*'],
+         ['populate', ['*', 'company.logo']],
          ['pagination[pageSize]', '6'],
       ])
       const response = await API.get('/comments', { params })

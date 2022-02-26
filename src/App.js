@@ -17,7 +17,7 @@ const App = () => {
       <div style={{ position: 'relative' }}>
          <Header />
          <Routes>
-            <Route path='/' element={<HomePage key='home' />}></Route>
+            <Route path='/' element={<HomePage />}></Route>
             {!isLoggedIn && (
                <>
                   <Route path='login' element={<LoginPage />}></Route>

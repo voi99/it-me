@@ -4,6 +4,8 @@ import styles from './SearchInput.module.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch, faCircleXmark } from '@fortawesome/free-solid-svg-icons'
 import { filterCompanies } from '../../api/company'
+import { Animate } from '../../animations/Animate'
+import { AnimatePresence } from 'framer-motion'
 
 const SearchInput = () => {
    const [openDropdown, setOpenDropdown] = useState(false)
@@ -56,18 +58,23 @@ const SearchInput = () => {
             autoComplete='off'
             style={{ color: 'var(--dark-grey)' }}
          />
-         {openDropdown && (
-            <div id='search-dropdown' className={styles['search-dropdown']}>
-               {countries.map((country) => (
-                  <Link
-                     to={`/company/${country.attributes.slug}/comments`}
-                     key={country.id}
-                  >
-                     {country.attributes.name}
-                  </Link>
-               ))}
-            </div>
-         )}
+         <AnimatePresence>
+            {openDropdown && (
+               <Animate
+                  id='search-dropdown'
+                  className={styles['search-dropdown']}
+               >
+                  {countries.map((country) => (
+                     <Link
+                        to={`/company/${country.attributes.slug}/comments`}
+                        key={country.id}
+                     >
+                        {country.attributes.name}
+                     </Link>
+                  ))}
+               </Animate>
+            )}
+         </AnimatePresence>
       </div>
    )
 }

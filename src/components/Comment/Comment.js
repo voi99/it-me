@@ -10,8 +10,8 @@ const Comment = ({ company, positive, negative }) => {
          <div
             style={{
                position: 'absolute',
-               top: '-1.4rem',
-               right: '1.4rem',
+               top: '-0.9rem',
+               right: '1.5rem',
                height: '2.8rem',
                width: '2.8rem',
                backgroundImage: `url(${url}${company.data.attributes.logo.data.attributes.url})`,

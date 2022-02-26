@@ -16,6 +16,7 @@ const Footer = () => {
                      className={styles['footer-logo-img']}
                   />
                   <h2 style={{ margin: '0.5rem 0' }}>IT me</h2>
+                  <a href='mailto:wecodemne@gmail.com'>wecodemne@gmail.com</a>
                </div>
 
                <div className={styles['social-networks']}>

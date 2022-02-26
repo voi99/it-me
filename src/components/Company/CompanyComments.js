@@ -81,25 +81,29 @@ const CompanyComments = ({ company }) => {
          )}
          <CompanySectionLayout title='Komentari' add={openModalHandler}>
             {comments ? (
-               <>
-                  {comments.map((comment) => (
-                     <CompanyComment
-                        comment={comment}
-                        userId={userId}
-                        key={comment.id}
-                        company={company}
-                        refresh={hasChangeHandler}
-                        commentHasChanged={commentChangeHandler}
-                     />
-                  ))}
-                  {loadMore && (
-                     <button onClick={handleLoadMore} className={styles.btn}>
-                        Load More
-                     </button>
-                  )}
-               </>
+               comments.length > 0 ? (
+                  <>
+                     {comments.map((comment) => (
+                        <CompanyComment
+                           comment={comment}
+                           userId={userId}
+                           key={comment.id}
+                           company={company}
+                           refresh={hasChangeHandler}
+                           commentHasChanged={commentChangeHandler}
+                        />
+                     ))}
+                     {loadMore && (
+                        <button onClick={handleLoadMore} className={styles.btn}>
+                           Load More
+                        </button>
+                     )}
+                  </>
+               ) : (
+                  <p style={{ textAlign: 'center' }}>Nema podataka</p>
+               )
             ) : (
-               'Loading...'
+               <p style={{ textAlign: 'center' }}>Loading...</p>
             )}
          </CompanySectionLayout>
       </>

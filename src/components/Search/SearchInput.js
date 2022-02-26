@@ -34,7 +34,6 @@ const SearchInput = () => {
 
       if (filteredCompanies.length > 0) {
          setCountries(filteredCompanies)
-         setOpenDropdown(true)
       } else {
          setOpenDropdown(false)
       }
@@ -56,6 +55,7 @@ const SearchInput = () => {
             onChange={handleInputChange}
             onFocus={handleInputChange}
             autoComplete='off'
+            onClick={() => setOpenDropdown(true)}
             style={{ color: 'var(--dark-grey)' }}
          />
          <AnimatePresence>
@@ -65,14 +65,16 @@ const SearchInput = () => {
                   className={styles['search-dropdown']}
                   duration='0.3'
                >
-                  {countries.map((country) => (
-                     <Link
-                        to={`/company/${country.attributes.slug}/comments`}
-                        key={country.id}
-                     >
-                        {country.attributes.name}
-                     </Link>
-                  ))}
+                  {countries.length > 0
+                     ? countries.map((country) => (
+                          <Link
+                             to={`/company/${country.attributes.slug}/comments`}
+                             key={country.id}
+                          >
+                             {country.attributes.name}
+                          </Link>
+                       ))
+                     : 'Loading...'}
                </Animate>
             )}
          </AnimatePresence>

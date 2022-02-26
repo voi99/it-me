@@ -16,6 +16,9 @@ const AddSalary = ({ title, company, onClose, refresh }) => {
          if (!data.position || !data.seniority) {
             setError('Morate dodati poziciju i nivo iskustva!')
             return
+         } else if (data.amount < 0) {
+            setError('Plata mora biti pozitivan broj!')
+            return
          }
          await addSalary({
             ...data,
@@ -46,6 +49,7 @@ const AddSalary = ({ title, company, onClose, refresh }) => {
                   type='number'
                   step='0.01'
                   id='amount'
+                  min={0}
                   required
                   {...register('amount')}
                   style={{

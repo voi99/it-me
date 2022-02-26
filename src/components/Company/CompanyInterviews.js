@@ -82,25 +82,29 @@ const CompanyInterviews = ({ company }) => {
          )}
          <CompanySectionLayout title='Intervjui' add={openModalHandler}>
             {interviews ? (
-               <>
-                  {interviews.map((interview) => (
-                     <CompanyInterview
-                        interview={interview}
-                        userId={userId}
-                        key={interview.id}
-                        company={company}
-                        refresh={hasChangeHandler}
-                        interviewHasChanged={interviewChangeHandler}
-                     />
-                  ))}
-                  {loadMore && (
-                     <button onClick={handleLoadMore} className={styles.btn}>
-                        Load More
-                     </button>
-                  )}
-               </>
+               interviews.length > 0 ? (
+                  <>
+                     {interviews.map((interview) => (
+                        <CompanyInterview
+                           interview={interview}
+                           userId={userId}
+                           key={interview.id}
+                           company={company}
+                           refresh={hasChangeHandler}
+                           interviewHasChanged={interviewChangeHandler}
+                        />
+                     ))}
+                     {loadMore && (
+                        <button onClick={handleLoadMore} className={styles.btn}>
+                           Load More
+                        </button>
+                     )}
+                  </>
+               ) : (
+                  <p style={{ textAlign: 'center' }}>Nema podataka</p>
+               )
             ) : (
-               'Loading...'
+               <p style={{ textAlign: 'center' }}>Loading...</p>
             )}
          </CompanySectionLayout>
       </>

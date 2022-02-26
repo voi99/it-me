@@ -26,8 +26,10 @@ const Comment = ({ company, positive, negative }) => {
          <h2 className={styles['company-name']}>
             {company.data.attributes.name}
          </h2>
+         <div style={{ padding: '0.15rem' }}></div>
          <h4>Pozitivno</h4>
          <p>{positive}</p>
+         <div style={{ padding: '0.15rem' }}></div>
          <h4>Negativno</h4>
          <p>{negative}</p>
          <button className={styles.btn}>pogledaj komentar</button>

@@ -60,7 +60,10 @@ const CompanyComment = ({
                   <h3>Pozitivno</h3>
                   <div className={styles['actions-wrapper']}>
                      {showActions && (
-                        <Animate className={styles['all-actions']}>
+                        <Animate
+                           className={styles['all-actions']}
+                           duration='0.4s'
+                        >
                            <FontAwesomeIcon
                               icon={faPenToSquare}
                               onClick={() => {

@@ -6,18 +6,18 @@ const variants = {
    exit: { opacity: 0, x: 0, y: 20 },
 }
 
-export const Animate = (props) => {
+export const Animate = ({ className, id, children, duration = 0.4 }) => {
    return (
       <motion.div
          initial='hidden'
          animate='enter'
          exit='exit'
          variants={variants}
-         transition={{ duration: 0.5, type: 'easeInOut' }}
-         className={props.className}
-         id={props.id}
+         transition={{ duration: duration, type: 'easeInOut' }}
+         className={className}
+         id={id}
       >
-         {props.children}
+         {children}
       </motion.div>
    )
 }

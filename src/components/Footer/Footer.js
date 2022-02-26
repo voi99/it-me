@@ -1,7 +1,8 @@
 import React from 'react'
 import styles from './Footer.module.css'
-import { Instagram, Facebook, Twitter, Linkedin, Youtube } from 'react-feather'
+import { Instagram, Facebook, Twitter, Linkedin } from 'react-feather'
 import { Link } from 'react-router-dom'
+import flag from '../../assets/flag.png'
 
 const Footer = () => {
    return (
@@ -9,24 +10,30 @@ const Footer = () => {
          <div className={styles['footer-content']}>
             <div className={styles['footer-content-section']}>
                <div className={styles['footer-logo']}>
-                  <div className={styles['footer-logo-img']}></div>
-                  <h1 className={styles['footer-logo-text']}>IT ME</h1>
+                  <img
+                     src={flag}
+                     alt='Montenegro Flag'
+                     className={styles['footer-logo-img']}
+                  />
+                  <h2 style={{ margin: '0.5rem 0' }}>IT me</h2>
                </div>
-               <h3>Follow us</h3>
-               <div className={styles['social-networks-wrapper']}>
-                  <a
-                     href='https://www.instagram.com/wecodemne/'
-                     target='_blank'
-                     rel='noreferrer noopener'
-                  >
-                     <Instagram size={42} />
-                  </a>
-                  <Facebook size={42} />
-                  <Twitter size={42} />
-                  <Linkedin size={42} />
-                  <Youtube size={42} />
+
+               <div className={styles['social-networks']}>
+                  <h3>Follow us</h3>
+                  <div className={styles['social-networks-wrapper']}>
+                     <a
+                        href='https://www.instagram.com/wecodemne/'
+                        target='_blank'
+                        rel='noreferrer noopener'
+                     >
+                        <Instagram size={42} />
+                     </a>
+                     <Facebook size={42} />
+                     <Twitter size={42} />
+                     <Linkedin size={42} />
+                  </div>
+                  <p>© IT me 2022</p>
                </div>
-               <p>© IT me 2022</p>
             </div>
             <div
                className={`${styles['footer-content-section']} ${styles.second}`}

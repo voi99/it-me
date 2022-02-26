@@ -10,21 +10,18 @@
 
 .footer-content-section {
    padding: 1rem 2.5rem;
+   display: flex;
+   flex-direction: column;
+   justify-content: space-between;
+   gap: 1.5rem;
 }
 
 .footer-logo {
-   display: flex;
-   align-items: center;
-   justify-content: space-between;
+   text-align: center;
 }
 
 .footer-logo-img {
-   background-image: url('../../assets/imac.png');
-   background-position: center;
-   background-repeat: no-repeat;
-   background-size: contain;
    width: 10rem;
-   height: 10rem;
 }
 
 .footer-content {
@@ -35,9 +32,14 @@
    grid-template-columns: 1fr;
 }
 
+.social-networks {
+   text-align: center;
+}
+
 .social-networks-wrapper {
    display: flex;
    gap: 1rem;
+   justify-content: center;
 }
 
 .social-networks-wrapper svg {
@@ -49,12 +51,9 @@
    transform: scale(1.2);
 }
 
-.second {
-   text-align: center;
-}
-
+.second,
 .third {
-   text-align: right;
+   text-align: center;
 }
 
 .links-wrapper {
@@ -72,6 +71,21 @@
    .footer-content {
       grid-template-columns: repeat(3, 1fr);
       gap: 1rem;
+   }
+   .third {
+      text-align: right;
+   }
+
+   .footer-logo {
+      text-align: left;
+   }
+
+   .social-networks {
+      text-align: left;
+   }
+
+   .social-networks-wrapper {
+      justify-content: flex-start;
    }
 }
 

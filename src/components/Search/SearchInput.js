@@ -29,8 +29,8 @@ const SearchInput = () => {
    }, [setWindowEvent])
 
    const handleInputChange = async (e) => {
-      const inputName = e.target.value.trim()
-      const filteredCompanies = await filterCompanies(inputName)
+      const companyName = e.target.value.trim()
+      const filteredCompanies = await filterCompanies(companyName)
 
       if (filteredCompanies.length > 0) {
          setCountries(filteredCompanies)
@@ -63,6 +63,7 @@ const SearchInput = () => {
                <Animate
                   id='search-dropdown'
                   className={styles['search-dropdown']}
+                  duration='0.3'
                >
                   {countries.map((country) => (
                      <Link

@@ -20,6 +20,7 @@
    transition: 1s;
    background-repeat: no-repeat;
    background-size: 100%;
+   background-position: center;
 }
 
 .company-info {

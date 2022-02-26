@@ -17,7 +17,7 @@ const Comment = ({ company, positive, negative }) => {
                backgroundImage: `url(${url}${company.data.attributes.logo.data.attributes.url})`,
                backgroundPosition: 'center',
                backgroundRepeat: 'no-repeat',
-               backgroundSize: '100%',
+               backgroundSize: '100% 100%',
                borderRadius: '0.5rem',
                transition: '0.5s',
             }}

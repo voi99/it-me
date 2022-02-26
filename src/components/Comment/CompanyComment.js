@@ -12,6 +12,7 @@ import Modal from '../UI/Modal'
 import EditComment from './EditComment'
 import { useAuthContext } from '../../hooks/use-auth'
 import { Animate } from '../../animations/Animate'
+import { AnimatePresence } from 'framer-motion'
 
 const CompanyComment = ({
    comment,
@@ -59,29 +60,28 @@ const CompanyComment = ({
                <div className={styles['element-actions']}>
                   <h3>Pozitivno</h3>
                   <div className={styles['actions-wrapper']}>
-                     {showActions && (
-                        <Animate
-                           className={styles['all-actions']}
-                           duration='0.4s'
-                        >
-                           <FontAwesomeIcon
-                              icon={faPenToSquare}
-                              onClick={() => {
-                                 setAction('edit')
-                                 openModalHandler()
-                              }}
-                              className={styles.icon}
-                           />
-                           <FontAwesomeIcon
-                              icon={faTrash}
-                              onClick={() => {
-                                 setAction('delete')
-                                 openModalHandler()
-                              }}
-                              className={styles.icon}
-                           />
-                        </Animate>
-                     )}
+                     <AnimatePresence exitBeforeEnter>
+                        {showActions && (
+                           <Animate className={styles['all-actions']}>
+                              <FontAwesomeIcon
+                                 icon={faPenToSquare}
+                                 onClick={() => {
+                                    setAction('edit')
+                                    openModalHandler()
+                                 }}
+                                 className={styles.icon}
+                              />
+                              <FontAwesomeIcon
+                                 icon={faTrash}
+                                 onClick={() => {
+                                    setAction('delete')
+                                    openModalHandler()
+                                 }}
+                                 className={styles.icon}
+                              />
+                           </Animate>
+                        )}
+                     </AnimatePresence>
                      {isLoggedIn &&
                         +comment.attributes.user.data.id === +userId && (
                            <FontAwesomeIcon

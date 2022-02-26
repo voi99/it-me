@@ -9,18 +9,21 @@
 
 .company-header {
    display: grid;
-   grid-template-columns: 8rem 1fr;
+   grid-template-columns: 8.5rem 1fr;
+   grid-template-areas: 'logo info';
 }
 
 .company-logo {
-   width: 8rem;
-   height: 8rem;
-   background-position: center;
+   grid-area: logo;
+   width: 8.5rem;
+   height: 8.5rem;
+   transition: 1s;
    background-repeat: no-repeat;
    background-size: 100%;
 }
 
 .company-info {
+   grid-area: info;
    padding: 1rem;
    display: flex;
    flex-direction: column;
@@ -29,7 +32,13 @@
 }
 
 .company-info h3 {
-   margin: 0;
+   margin: 0 0 0.4rem;
+}
+
+.company-info p {
+   margin: 0.25rem 0;
+   font-size: 0.85em;
+   text-align: center;
 }
 
 .company-about,
@@ -50,4 +59,23 @@
 .company-about p,
 .chart-title {
    color: var(--grey-smoke);
+}
+
+@media only screen and (min-width: 768px) {
+   .company-header {
+      grid-template-columns: 7rem 1fr;
+   }
+
+   .company-logo {
+      width: 7rem;
+   }
+}
+
+@media only screen and (min-width: 992px) {
+   .company-header {
+      grid-template-columns: 8.5rem 1fr;
+   }
+   .company-logo {
+      width: 8.5rem;
+   }
 }

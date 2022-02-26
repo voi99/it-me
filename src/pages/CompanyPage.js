@@ -59,7 +59,7 @@ const CompanyPage = () => {
                )}
             </div>
          </Wrapper>
-         <Footer />
+         {company && <Footer />}
       </Animate>
    )
 }

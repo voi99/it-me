@@ -1,15 +1,20 @@
 import React from 'react'
 import ReactApexChart from 'react-apexcharts'
 
-const Chart = ({ data, by }) => {
+const Chart = ({ data, by, sign }) => {
    const chartData = {
       series: [...data.map((year) => year.attributes[by])],
 
       options: {
-         dataLabels: { enabled: false },
          labels: [...data.map((year) => year.attributes.year)],
          theme: {
             palette: 'palette3',
+         },
+         dataLabels: {
+            formatter: function (value, { seriesIndex, w }) {
+               return `${w.config.series[seriesIndex]}${sign}`
+            },
+            textAnchor: 'middle',
          },
          responsive: [
             {

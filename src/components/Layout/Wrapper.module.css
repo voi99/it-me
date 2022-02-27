@@ -1,7 +1,7 @@
 .wrapper {
-   margin: 4.3rem auto 1rem;
+   margin: 4rem auto 1rem;
    max-width: 1240px;
-   padding: 0rem 1rem;
+   padding: 0rem 0.6rem;
 }
 
 @media only screen and (min-width: 1240px) {

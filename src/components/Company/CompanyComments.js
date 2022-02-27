@@ -79,7 +79,11 @@ const CompanyComments = ({ company }) => {
                />
             </Modal>
          )}
-         <CompanySectionLayout title='Komentari' add={openModalHandler}>
+         <CompanySectionLayout
+            title='Komentari'
+            add={openModalHandler}
+            hoverText='Prijavi se kako bi dodao komentar'
+         >
             {comments ? (
                comments.length > 0 ? (
                   <>

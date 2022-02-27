@@ -80,7 +80,11 @@ const CompanyInterviews = ({ company }) => {
                />
             </Modal>
          )}
-         <CompanySectionLayout title='Intervjui' add={openModalHandler}>
+         <CompanySectionLayout
+            title='Intervjui'
+            add={openModalHandler}
+            hoverText='Prijavi se kako bi dodao intervju'
+         >
             {interviews ? (
                interviews.length > 0 ? (
                   <>

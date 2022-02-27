@@ -16,7 +16,7 @@ const CommentsList = () => {
 
    return (
       <section className={styles['comments-seciton']}>
-         <h3>Najnoviji komentari</h3>
+         <h3 style={{ paddingLeft: '0.3rem' }}>Najnoviji komentari</h3>
          <div className={styles.comments}>
             {latestComments
                ? latestComments.map((comment) => (

@@ -49,7 +49,11 @@ const CompanySalaries = ({ company }) => {
                />
             </Modal>
          )}
-         <CompanySectionLayout title='Plate' add={openModalHandler}>
+         <CompanySectionLayout
+            title='Plate'
+            add={openModalHandler}
+            hoverText='Prijavi se kako bi dodao platu'
+         >
             {salaries ? (
                Object.keys(salaries).length > 0 ? (
                   <div className={styles.salaries}>

@@ -18,6 +18,7 @@
    background-color: var(--black);
    border-radius: 0.5rem;
    padding: 0rem 0.5rem 0.5rem;
+   min-width: fit-content;
 }
 .company-section-content {
    display: flex;

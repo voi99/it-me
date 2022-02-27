@@ -28,3 +28,12 @@ export const getCurrentUser = async () => {
       throw Error(ex?.response?.data?.error?.message ?? 'Unknown error')
    }
 }
+
+export const updateUserPassword = async (id, data) => {
+   try {
+      const response = await API.put(`/users/${id}`, { password: data })
+      return response
+   } catch (ex) {
+      throw Error(ex?.response?.data?.error?.message ?? 'Unknown error')
+   }
+}

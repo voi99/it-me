@@ -70,7 +70,7 @@ const CompanyComments = ({ company }) => {
       <>
          <Toaster />
          {openModal && (
-            <Modal>
+            <Modal onClose={closeModalHandler}>
                <AddComment
                   title='Komentar'
                   company={company}

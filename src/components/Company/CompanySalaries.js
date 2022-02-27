@@ -40,7 +40,7 @@ const CompanySalaries = ({ company }) => {
    return (
       <>
          {openModal && (
-            <Modal>
+            <Modal onClose={closeModalHandler}>
                <AddSalary
                   title='Plata'
                   company={company}

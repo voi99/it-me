@@ -71,7 +71,7 @@ const CompanyInterviews = ({ company }) => {
       <>
          <Toaster />
          {openModal && (
-            <Modal>
+            <Modal onClose={closeModalHandler}>
                <AddInterview
                   title='Intervju'
                   company={company}

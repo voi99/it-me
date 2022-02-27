@@ -32,7 +32,7 @@ const CompanyInterview = ({
    return (
       <>
          {openModal && (
-            <Modal>
+            <Modal onClose={closeModalHandler}>
                {action === 'delete' ? (
                   <DeleteInterview
                      title='Obrisi komentar'

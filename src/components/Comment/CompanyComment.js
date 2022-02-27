@@ -33,7 +33,7 @@ const CompanyComment = ({
    return (
       <>
          {openModal && (
-            <Modal>
+            <Modal onClose={closeModalHandler}>
                {action === 'delete' ? (
                   <DeleteComment
                      title='Obrisi komentar'

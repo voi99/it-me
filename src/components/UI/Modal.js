@@ -3,7 +3,16 @@ import { createPortal } from 'react-dom'
 import styles from './Modal.module.css'
 
 const Backdrop = (props) => {
-   return <div className={styles.backdrop}>{props.children}</div>
+   const backdropClose = (e) => {
+      if (e.target.className === `${styles.backdrop}`) {
+         props.close()
+      }
+   }
+   return (
+      <div className={styles.backdrop} onClick={backdropClose}>
+         {props.children}
+      </div>
+   )
 }
 
 const ModalOverlay = (props) => {
@@ -16,7 +25,7 @@ const Modal = (props) => {
    return (
       <>
          {createPortal(
-            <Backdrop>
+            <Backdrop close={props.onClose}>
                <ModalOverlay>{props.children}</ModalOverlay>
             </Backdrop>,
             portalEl

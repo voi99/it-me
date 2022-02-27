@@ -32,6 +32,18 @@ const EditComment = ({
 
    const onSubmit = async (data) => {
       try {
+         if (
+            data.positive.trim().length === 0 &&
+            data.negative.trim().length === 0
+         ) {
+            setError(
+               'Morate dodati pozitivne ili negativne strane rada u firmi!'
+            )
+            return
+         } else if (!data.position || !data.seniority) {
+            setError('Morate dodati poziciju i nivo iskustva!')
+            return
+         }
          await updateComment(comment.id, {
             ...data,
             seniority: data.seniority.value,

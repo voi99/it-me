@@ -32,6 +32,16 @@ const EditInterview = ({
 
    const onSubmit = async (data) => {
       try {
+         if (
+            data.hrInterview.trim().length === 0 &&
+            data.technicalInterview.trim().length === 0
+         ) {
+            setError('Morate dodati utisak sa HR ili Tehnickog intervju-a!')
+            return
+         } else if (!data.position || !data.seniority) {
+            setError('Morate dodati poziciju i nivo iskustva!')
+            return
+         }
          await updateInterview(interview.id, {
             ...data,
             seniority: data.seniority.value,

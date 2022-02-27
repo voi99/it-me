@@ -4,22 +4,22 @@
 
 .hovertext:before {
    content: attr(data-hover);
-   visibility: hidden;
+   display: none;
    opacity: 0;
    width: 160px;
    background-color: var(--black);
    color: #fff;
    text-align: center;
    border-radius: 5px;
-   padding: 5px 0;
-   transition: opacity 1s ease-in-out;
+   padding: 0.5rem 0;
    position: absolute;
    z-index: 1;
-   left: 0;
-   top: 120%;
+   left: 150%;
+   top: 40%;
 }
 
 .hovertext:hover:before {
    opacity: 1;
-   visibility: visible;
+   display: block;
+   box-shadow: 0 8px 10px 0 rgb(0 0 0 / 20%);
 }

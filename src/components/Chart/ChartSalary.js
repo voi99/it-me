@@ -12,6 +12,7 @@ const ChartSalary = ({ data, title, avgSalary }) => {
          chart: {
             height: 350,
             type: 'donut',
+            fontFamily: 'Poppins, sans-serif',
          },
          labels: data,
          title: {

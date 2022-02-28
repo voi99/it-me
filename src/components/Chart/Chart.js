@@ -6,13 +6,18 @@ const Chart = ({ data, by, sign }) => {
       series: [...data.map((year) => year.attributes[by])],
 
       options: {
+         chart: {
+            fontFamily: 'Poppins, sans-serif',
+         },
          labels: [...data.map((year) => year.attributes.year)],
          theme: {
             palette: 'palette3',
          },
          dataLabels: {
             formatter: function (value, { seriesIndex, w }) {
-               return `${w.config.series[seriesIndex]}${sign}`
+               return `${w.config.series[seriesIndex].toLocaleString(
+                  'en-US'
+               )}${sign}`
             },
             textAnchor: 'middle',
          },

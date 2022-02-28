@@ -6,6 +6,7 @@ import AddSalary from '../Salary/AddSalary'
 import { fetchCompanySalaries } from '../../api/company'
 import styles from './CompanySalaries.module.css'
 import ChartSalary from '../Chart/ChartSalary'
+import toast, { Toaster } from 'react-hot-toast'
 
 const CompanySalaries = ({ company }) => {
    const {
@@ -35,10 +36,18 @@ const CompanySalaries = ({ company }) => {
       }
 
       fillSalaries()
-   }, [company, hasChange])
+   }, [company])
+
+   useEffect(() => {
+      if (hasChange) {
+         toast('Plata ceka odobrenje 😀')
+         hasChangeHandler(false)
+      }
+   }, [hasChange, hasChangeHandler])
 
    return (
       <>
+         <Toaster />
          {openModal && (
             <Modal onClose={closeModalHandler}>
                <AddSalary

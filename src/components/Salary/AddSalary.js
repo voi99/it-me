@@ -25,6 +25,7 @@ const AddSalary = ({ title, company, onClose, refresh }) => {
             position: data.position.value,
             seniority: data.seniority.value,
             company: company.id,
+            publishedAt: null,
          })
          refresh()
          onClose()

@@ -1,14 +1,17 @@
 .salaries {
    display: flex;
    flex-direction: row;
-   gap: 2.5rem;
+   gap: 1.8rem;
    flex-wrap: wrap;
    align-items: center;
    justify-content: space-between;
+   width: 100%;
+   margin: 1rem 0;
 }
 
 .salaries > * {
-   width: 100%;
+   width: fit-content;
+   margin: auto;
 }
 
 @media only screen and (min-width: 1024px) {

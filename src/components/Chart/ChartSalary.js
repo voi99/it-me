@@ -36,7 +36,7 @@ const ChartSalary = ({ data, title, avgSalary }) => {
                         show: true,
                         showAlways: true,
                         label: avgSalary.title,
-                        fontSize: '14px',
+                        fontSize: '12px',
                         fontFamily: 'Poppins, sans-serif',
                         fontWeight: 600,
                         color: '#e0e0e0',

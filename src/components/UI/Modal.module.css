@@ -27,6 +27,12 @@
 @media (min-width: 768px) {
    .modal {
       margin: 3rem auto;
+      width: 90%;
+   }
+}
+
+@media (min-width: 992px) {
+   .modal {
       width: 50rem;
    }
 }

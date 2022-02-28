@@ -9,7 +9,7 @@ import { AnimatePresence } from 'framer-motion'
 
 const SearchInput = () => {
    const [openDropdown, setOpenDropdown] = useState(false)
-   const [countries, setCountries] = useState([])
+   const [countries, setCountries] = useState()
 
    const handleCloseDropdown = () => {
       setOpenDropdown(false)
@@ -32,10 +32,9 @@ const SearchInput = () => {
       const companyName = e.target.value.trim()
       const filteredCompanies = await filterCompanies(companyName)
 
-      if (filteredCompanies.length > 0) {
-         setCountries(filteredCompanies)
-      } else {
-         setOpenDropdown(false)
+      setCountries(filteredCompanies)
+      if (!openDropdown) {
+         setOpenDropdown(true)
       }
    }
 
@@ -65,15 +64,17 @@ const SearchInput = () => {
                   className={styles['search-dropdown']}
                   duration='0.3'
                >
-                  {countries.length > 0
-                     ? countries.map((country) => (
-                          <Link
-                             to={`/company/${country.attributes.slug}/comments`}
-                             key={country.id}
-                          >
-                             {country.attributes.name}
-                          </Link>
-                       ))
+                  {countries
+                     ? countries.length > 0
+                        ? countries.map((country) => (
+                             <Link
+                                to={`/company/${country.attributes.slug}/comments`}
+                                key={country.id}
+                             >
+                                {country.attributes.name}
+                             </Link>
+                          ))
+                        : 'Nema podataka'
                      : 'Loading...'}
                </Animate>
             )}

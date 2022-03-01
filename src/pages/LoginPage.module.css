@@ -36,8 +36,20 @@
    color: var(--light-grey);
 }
 
+.other-actions {
+   display: flex;
+   justify-content: space-between;
+   padding: 3rem 0.5rem;
+   margin: auto;
+}
+
 @media only screen and (min-width: 768px) {
    .form-wrapper {
       padding: 0.5rem 2rem 2rem;
+   }
+
+   .other-actions {
+      padding: 0 2rem;
+      max-width: 768px;
    }
 }

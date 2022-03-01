@@ -3,8 +3,7 @@ import ReactApexChart from 'react-apexcharts'
 
 const ChartSalary = ({ data, title, avgSalary }) => {
    const chartData = {
-      series: data,
-
+      series: [...new Set(data)],
       options: {
          legend: {
             show: false,
@@ -14,7 +13,7 @@ const ChartSalary = ({ data, title, avgSalary }) => {
             type: 'donut',
             fontFamily: 'Poppins, sans-serif',
          },
-         labels: data,
+         labels: [...new Set(data)],
          title: {
             text: title,
             align: 'center',
@@ -32,6 +31,7 @@ const ChartSalary = ({ data, title, avgSalary }) => {
             pie: {
                donut: {
                   labels: {
+                     showDuplicates: false,
                      show: true,
                      total: {
                         show: true,

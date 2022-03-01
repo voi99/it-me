@@ -8,6 +8,7 @@ import styles from './LoginPage.module.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEnvelope, faLock } from '@fortawesome/free-solid-svg-icons'
 import { Animate } from '../animations/Animate'
+import { Link } from 'react-router-dom'
 
 const LoginPage = () => {
    const { login } = useAuthContext()
@@ -82,6 +83,9 @@ const LoginPage = () => {
                      </button>
                   )}
                </form>
+            </div>
+            <div className={styles['other-actions']}>
+               <Link to='/signup'>Nemate nalog ?</Link>
             </div>
          </Wrapper>
       </Animate>

@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEnvelope, faLock, faUser } from '@fortawesome/free-solid-svg-icons'
 import Input from '../components/UI/Input'
 import { createUser } from '../api/auth'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 import { Animate } from '../animations/Animate'
 
 const RegisterPage = () => {
@@ -93,6 +93,9 @@ const RegisterPage = () => {
                      </button>
                   )}
                </form>
+            </div>
+            <div className={styles['other-actions']}>
+               <Link to='/login'>Imate nalog ?</Link>
             </div>
          </Wrapper>
       </Animate>

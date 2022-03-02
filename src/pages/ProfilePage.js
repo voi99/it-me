@@ -25,7 +25,7 @@ const ProfilePage = () => {
                const fUser = await getCurrentUser()
                setUser(fUser)
             } catch (e) {
-               console.log(e)
+               console.log()
             }
          }
       })()

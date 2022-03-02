@@ -58,10 +58,11 @@ export const fetchCompanyComments = async (companyId, limit) => {
 export const fetchCompanySalaries = async (companyId) => {
    try {
       const params = new URLSearchParams([
-         ['populate', 'salaries.position,salaries.seniority'],
+         ['filters[company][id][$eq]', companyId],
+         ['populate', 'position,seniority'],
       ])
-      const response = await API.get(`/companies/${companyId}`, { params })
-      return response.data.data.attributes.salaries.data
+      const response = await API.get(`/salaries`, { params })
+      return response.data.data
    } catch (ex) {
       throw Error(ex?.response?.data?.error?.message ?? 'Unknown error')
    }

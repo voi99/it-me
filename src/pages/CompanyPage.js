@@ -67,7 +67,7 @@ const CompanyPage = () => {
          ) : (
             <LoadingSpinner />
          )}
-         <Footer />
+         {company && <Footer />}
       </Animate>
    )
 }

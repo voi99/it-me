@@ -1,7 +1,7 @@
 .hero-banner {
    display: flex;
    height: 38rem;
-   background-image: url('../../assets/hero.webp');
+   background-image: url('../../assets/hero.jpg');
    background-position: center;
    background-repeat: no-repeat;
    background-size: cover;

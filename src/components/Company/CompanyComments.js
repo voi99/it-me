@@ -9,6 +9,7 @@ import { getCurrentUser } from '../../api/auth'
 import CompanyComment from '../Comment/CompanyComment'
 import { useAuthContext } from '../../hooks/use-auth'
 import toast, { Toaster } from 'react-hot-toast'
+import LoadingSpinner from '../UI/LoadingSpinner'
 
 const CompanyComments = ({ company }) => {
    const [userId, setUserId] = useState()
@@ -107,7 +108,7 @@ const CompanyComments = ({ company }) => {
                   <p style={{ textAlign: 'center' }}>Nema podataka</p>
                )
             ) : (
-               <p style={{ textAlign: 'center' }}>Loading...</p>
+               <LoadingSpinner />
             )}
          </CompanySectionLayout>
       </>

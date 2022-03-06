@@ -9,6 +9,7 @@ import CompanyInterview from '../Interview/CompanyInterview'
 import { useAuthContext } from '../../hooks/use-auth'
 import { getCurrentUser } from '../../api/auth'
 import toast, { Toaster } from 'react-hot-toast'
+import LoadingSpinner from '../UI/LoadingSpinner'
 
 const CompanyInterviews = ({ company }) => {
    const {
@@ -108,7 +109,7 @@ const CompanyInterviews = ({ company }) => {
                   <p style={{ textAlign: 'center' }}>Nema podataka</p>
                )
             ) : (
-               <p style={{ textAlign: 'center' }}>Loading...</p>
+               <LoadingSpinner />
             )}
          </CompanySectionLayout>
       </>

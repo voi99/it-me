@@ -9,6 +9,7 @@ import { useAuthContext } from './hooks/use-auth'
 import ProfilePage from './pages/ProfilePage'
 import VerifyEmail from './pages/VerifyEmail'
 import Credits from './pages/Credits'
+import ScrollToTop from './components/UI/ScrollToTop'
 
 const App = () => {
    const { isLoggedIn } = useAuthContext()
@@ -16,20 +17,22 @@ const App = () => {
    return (
       <div style={{ position: 'relative' }}>
          <Header />
-         <Routes>
-            <Route path='/' element={<HomePage />}></Route>
-            {!isLoggedIn && (
-               <>
-                  <Route path='login' element={<LoginPage />}></Route>
-                  <Route path='signup' element={<RegisterPage />}></Route>
-                  <Route path='verify' element={<VerifyEmail />}></Route>
-               </>
-            )}
-            <Route path='company/:slug/*' element={<CompanyPage />}></Route>
-            <Route path='me' element={<ProfilePage />}></Route>
-            <Route path='credits' element={<Credits />}></Route>
-            <Route path='*' element={<Navigate to='/' />}></Route>
-         </Routes>
+         <ScrollToTop>
+            <Routes>
+               <Route path='/' element={<HomePage />}></Route>
+               {!isLoggedIn && (
+                  <>
+                     <Route path='login' element={<LoginPage />}></Route>
+                     <Route path='signup' element={<RegisterPage />}></Route>
+                     <Route path='verify' element={<VerifyEmail />}></Route>
+                  </>
+               )}
+               <Route path='company/:slug/*' element={<CompanyPage />}></Route>
+               <Route path='me' element={<ProfilePage />}></Route>
+               <Route path='credits' element={<Credits />}></Route>
+               <Route path='*' element={<Navigate to='/' />}></Route>
+            </Routes>
+         </ScrollToTop>
       </div>
    )
 }

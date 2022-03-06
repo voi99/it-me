@@ -1,6 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import Wrapper from '../components/Layout/Wrapper'
-import { Route, Routes, useParams, useLocation } from 'react-router-dom'
+import {
+   Route,
+   Routes,
+   useParams,
+   useLocation,
+   useNavigate,
+} from 'react-router-dom'
 import styles from './CompanyPage.module.css'
 import CompanyDetails from '../components/Company/CompanyDetails'
 import { fetchCompany } from '../api/company'
@@ -11,55 +17,57 @@ import CompanyInterviews from '../components/Company/CompanyInterviews'
 import Footer from '../components/Footer/Footer'
 import { Animate } from '../animations/Animate'
 import { AnimatePresence } from 'framer-motion'
+import LoadingSpinner from '../components/UI/LoadingSpinner'
 
 const CompanyPage = () => {
    const { slug } = useParams()
    const [company, setCompany] = useState(null)
    const location = useLocation()
+   const navigate = useNavigate()
 
    useEffect(() => {
       const getCompany = async () => {
          const fetchedCompany = await fetchCompany(slug)
+         if (!fetchedCompany) {
+            navigate('/')
+            return
+         }
          setCompany(fetchedCompany)
       }
       getCompany()
-   }, [slug])
+   }, [slug, navigate])
 
    return (
       <Animate>
-         <Wrapper>
-            <div className={styles['company-content']}>
-               {company ? (
-                  <>
-                     <CompanyDetails company={company} />
-                     <div className={styles['company-sections']}>
-                        <CompanyRouter />
-                        <AnimatePresence exitBeforeEnter>
-                           <Routes location={location} key={location.pathname}>
-                              <Route
-                                 path='comments'
-                                 element={<CompanyComments company={company} />}
-                              />
-                              <Route
-                                 path='salaries'
-                                 element={<CompanySalaries company={company} />}
-                              />
-                              <Route
-                                 path='interviews'
-                                 element={
-                                    <CompanyInterviews company={company} />
-                                 }
-                              />
-                           </Routes>
-                        </AnimatePresence>
-                     </div>
-                  </>
-               ) : (
-                  'Loading...'
-               )}
-            </div>
-         </Wrapper>
-         {company && <Footer />}
+         {company ? (
+            <Wrapper>
+               <div className={styles['company-content']}>
+                  <CompanyDetails company={company} />
+                  <div className={styles['company-sections']}>
+                     <CompanyRouter />
+                     <AnimatePresence exitBeforeEnter>
+                        <Routes location={location} key={location.pathname}>
+                           <Route
+                              path='comments'
+                              element={<CompanyComments company={company} />}
+                           />
+                           <Route
+                              path='salaries'
+                              element={<CompanySalaries company={company} />}
+                           />
+                           <Route
+                              path='interviews'
+                              element={<CompanyInterviews company={company} />}
+                           />
+                        </Routes>
+                     </AnimatePresence>
+                  </div>
+               </div>
+            </Wrapper>
+         ) : (
+            <LoadingSpinner />
+         )}
+         <Footer />
       </Animate>
    )
 }

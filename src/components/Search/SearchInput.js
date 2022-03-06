@@ -75,7 +75,7 @@ const SearchInput = () => {
                              </Link>
                           ))
                         : 'Nema podataka'
-                     : 'Loading...'}
+                     : 'Pretraga...'}
                </Animate>
             )}
          </AnimatePresence>

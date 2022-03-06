@@ -7,6 +7,7 @@ import { fetchCompanySalaries } from '../../api/company'
 import styles from './CompanySalaries.module.css'
 import ChartSalary from '../Chart/ChartSalary'
 import toast, { Toaster } from 'react-hot-toast'
+import LoadingSpinner from '../UI/LoadingSpinner'
 
 const CompanySalaries = ({ company }) => {
    const {
@@ -85,7 +86,7 @@ const CompanySalaries = ({ company }) => {
                   <p style={{ textAlign: 'center' }}>Nema podataka</p>
                )
             ) : (
-               <p style={{ textAlign: 'center' }}>Loading...</p>
+               <LoadingSpinner />
             )}
          </CompanySectionLayout>
       </>

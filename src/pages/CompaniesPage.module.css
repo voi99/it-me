@@ -1,0 +1,46 @@
+.search {
+   display: flex;
+   gap: 1rem;
+   padding: 1.5rem 0 3rem;
+}
+
+.input {
+   width: 100%;
+   border-radius: 0.4rem;
+   border: none;
+}
+
+.btn:hover {
+   background-color: var(--black);
+   color: var(--light-grey);
+}
+
+.filters {
+   display: flex;
+   gap: 1rem;
+   flex-wrap: wrap;
+}
+
+.filters > * {
+   min-width: 10rem;
+   flex: 1 1 30%;
+}
+
+.companies {
+   display: grid;
+   grid-template-columns: 1fr;
+   row-gap: 2.5rem;
+   column-gap: 1rem;
+}
+
+@media only screen and (min-width: 768px) {
+   .companies {
+      grid-template-columns: repeat(2, 1fr);
+   }
+}
+
+@media only screen and (min-width: 1024px) {
+   .companies {
+      grid-template-columns: repeat(3, 1fr);
+   }
+}

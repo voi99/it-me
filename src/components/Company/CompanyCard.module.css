@@ -1,0 +1,73 @@
+.company-card {
+   position: relative;
+   overflow: hidden;
+   border-radius: 0.4rem;
+   width: 100%;
+   height: 18rem;
+   box-shadow: 0 0 10px var(--black);
+}
+
+.company-logo {
+   background-position: center;
+   background-repeat: no-repeat;
+   background-size: 100% 100%;
+   height: 8rem;
+   width: 8rem;
+   clear: both;
+}
+
+.company-card-main {
+   display: flex;
+   gap: 1rem;
+   align-items: center;
+}
+
+.company-info {
+   position: relative;
+   transition: top 0.8s, background-color 1.6s;
+   position: absolute;
+   top: calc(100% - 2.55rem);
+   background-color: rgba(33, 33, 33, 0.7);
+   width: 100%;
+   height: 100%;
+}
+
+.company-info-header {
+   display: flex;
+   flex-direction: column;
+   padding: 0.5rem 1rem;
+   gap: 0.4rem;
+}
+
+.company-card p,
+.company-card h2,
+.company-card h3 {
+   margin: 0;
+}
+
+.company-info-header p {
+   height: 1.5rem;
+}
+
+.location {
+   display: flex;
+   gap: 0.5rem;
+   align-items: center;
+}
+
+.links {
+   display: flex;
+   justify-content: center;
+   flex-direction: column;
+   gap: 0.5rem;
+   padding: 1.5rem 0.8rem;
+}
+
+.description {
+   padding: 0rem 1rem;
+}
+
+.company-info:hover {
+   top: 0%;
+   background-color: rgba(33, 33, 33, 1);
+}

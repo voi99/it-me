@@ -37,6 +37,12 @@ const Header = () => {
             </div>
             <div className={styles['header-actions-wrapper']}>
                <div className={styles['header-actions-desktop']}>
+                  <Link
+                     to='/companies'
+                     className={`${styles['link']} ${styles['link-first']}`}
+                  >
+                     Kompanije
+                  </Link>
                   {isLoggedIn ? (
                      <>
                         <Link
@@ -80,6 +86,15 @@ const Header = () => {
                   <AnimatePresence exitBeforeEnter>
                      {openDropdown && (
                         <ActionsDropdown>
+                           <Link
+                              to='/companies'
+                              className={`${styles['link']} ${styles['link-first']}`}
+                              onClick={() => {
+                                 handleDropdown()
+                              }}
+                           >
+                              Kompanije
+                           </Link>
                            {!isLoggedIn ? (
                               <>
                                  <Link

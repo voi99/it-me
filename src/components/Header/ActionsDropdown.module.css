@@ -8,4 +8,12 @@
    justify-content: center;
    background-color: #000000;
    padding: 1rem;
+   flex-wrap: wrap;
+}
+
+.dropdown > * {
+   flex: 1 1 32%;
+   display: flex;
+   justify-content: center;
+   align-items: center;
 }

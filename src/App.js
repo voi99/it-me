@@ -9,6 +9,7 @@ import { useAuthContext } from './hooks/use-auth'
 import ProfilePage from './pages/ProfilePage'
 import VerifyEmail from './pages/VerifyEmail'
 import Credits from './pages/Credits'
+import CompaniesPage from './pages/CompaniesPage'
 
 const App = () => {
    const { isLoggedIn } = useAuthContext()
@@ -16,7 +17,6 @@ const App = () => {
    return (
       <div style={{ position: 'relative' }}>
          <Header />
-
          <Routes>
             <Route path='/' element={<HomePage />}></Route>
             {!isLoggedIn && (
@@ -27,6 +27,7 @@ const App = () => {
                </>
             )}
             <Route path='company/:slug/*' element={<CompanyPage />}></Route>
+            <Route path='companies' element={<CompaniesPage />}></Route>
             <Route path='me' element={<ProfilePage />}></Route>
             <Route path='credits' element={<Credits />}></Route>
             <Route path='*' element={<Navigate to='/' />}></Route>

@@ -30,6 +30,7 @@ export const filterCompanies = async (cName) => {
       const params = new URLSearchParams([
          ['filters[name][$containsi]', cName],
          ['sort', 'name:asc'],
+         ['populate', '*'],
       ])
       const response = await API.get('/companies', { params })
       return response.data.data

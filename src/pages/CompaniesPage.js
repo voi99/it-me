@@ -27,15 +27,7 @@ const CompaniesPage = () => {
    return (
       <>
          <Wrapper>
-            <h2
-               style={{
-                  textAlign: 'center',
-                  color: 'var(--red)',
-                  marginTop: '5.5rem',
-               }}
-            >
-               😒 Page In Development 😒
-            </h2>
+            
             <form action='' className={styles.search} onSubmit={handleSearch}>
                <input
                   type='search'
